@@ -1,0 +1,47 @@
+@use'../../styles/variaveis.scss' as*;
+
+.Navbar{
+    background-color: $ColorVermelho;
+    height: 13vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+
+    .imgTitulo{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 85vh;
+
+            .ImgHouse{
+                height: 8vh !important;
+            }
+
+
+            .TituloNavBar{
+                font-family: $fontePrincipal;
+                font-size: 2rem;
+                color: $ColorBranco;
+            }
+
+
+    }
+
+
+}
+
+.ListaNavBar{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 20vw;
+    height: 6vh;
+
+        .ListaItemNav{
+            font-family: $fonteSecundaria;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: $ColorBranco;
+        }
+}
