@@ -6,11 +6,37 @@
 
 ---
 
-## 🚀 Tecnologias Utilizadas no Front End e Back End
+## 🚀 Tecnologias Utilizadas no Back e no Front
 
-<img height="65" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/react.png" alt="React"/>
-<img height="65" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/sass.png" alt="Sass"/>
-<img height="65" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/express.png" alt="Express"/>
-<img height="65" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/node_js.png" alt="Node.js"/>
-<img height="65" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/postman.png" alt="Postman"/>
-<img height="65" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/sqlite.png" alt="SQLite"/>
+<p align="left">
+    <img 
+        height="65"
+        src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/react.png"
+        title="React"
+    />
+    <img 
+        height="65"
+        src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/sass.png"
+        title="Sass"
+    />
+    <img
+        height="65"
+        src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/express.png"
+        title="Express"
+    />
+    <img
+        height="65"
+        src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/node_js.png"
+        title="Nodejs"
+    />
+    <img
+        height="65"
+        src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/postman.png"
+        title="Postman"
+    />
+    <img
+        height="65"
+        src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/sqlite.png"
+        title="SQLite/SQLite3"
+    />
+</p>
