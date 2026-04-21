@@ -1,9 +1,9 @@
-@use'../../styles/variaveis.scss' as*;
+@use'../../styles/variaveis.scss' as *;
 
 .SecaoPessoas{
-    height: 90vh;
-    display: flex;
-    align-items: center;
+  height: 110vh;
+  display: flex;
+  align-items: center;
 }
 
 .forms {
@@ -23,11 +23,8 @@
     text-align: center;
     color: $ColorVermelho;
     padding: 1.5rem 0.5rem;
-    
   }
-  
 }
-
 
 .dataRegistro {
   font-weight: bold;
@@ -46,13 +43,29 @@
   input,
   select {
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid $ColorCinzaClaro;
     border-radius: 5px;
+    outline: none;
+
+    &:disabled {
+      background-color: $ColorBranco;
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+  }
+}
+
+/* NOVO: Alinha os campos na mesma linha */
+.groupRow {
+  display: flex;
+  gap: 15px;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
   }
 }
 
 .ContainerButtons {
-  
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -68,10 +81,61 @@
     font-family: $fonteSecundaria;
     font-weight: 700;
     font-size: 1rem;
+    transition: opacity 0.3s;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
   }
 
   .ButtonSalvar{
     background-color: $ColorVermelho;
-    
   }
+}
+
+/* NOVO: Estilos do Botão Lupa e Alerta de Encontrado */
+.btnBuscar {
+  background-color: $ColorCinza;
+  color: $ColorBranco;
+  border: none;
+  border-radius: 5px;
+  padding: 0 15px;
+  height: 35px; /* Altura para alinhar com o input */
+  cursor: pointer;
+  font-weight: bold;
+  font-family: $fontePrincipal;
+  transition: opacity 0.3s;
+  margin-bottom: 15px; // Para alinhar a base
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.alertWarningBox {
+  background-color:$errorTextBackground;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid $errorTextBorder;
+
+  p {
+    margin: 5px 0;
+    color: $ColorCinza;
+    font-family: $fonteSecundaria;
+    font-weight: normal;
+  }
+}
+
+.alertWarningTitle {
+  color: $errorTextColor;
+  margin: 0 0 10px 0;
+  font-family: $fontePrincipal;
+  font-size: 1.2rem;
 }

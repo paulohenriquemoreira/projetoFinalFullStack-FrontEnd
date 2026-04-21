@@ -2,22 +2,21 @@ import React, { useState, useEffect } from "react";
 import Styles from "./PessoaDesaparecida.module.scss";
 
 export default function PessoaForm() {
-  // 1. Ajustei os nomes das chaves para ficarem exatamente iguais ao que o backend espera no req.body
   const [form, setForm] = useState({
     nome_completo: "",
     data_nascimento: "",
-    endereco_residencial: "", // Antes estava só 'endereco'
-    id_abrigo: "",            // Antes estava só 'abrigo'
+    endereco_residencial: "",
+    id_abrigo: "",
   });
 
-  // Estado para armazenar a lista de abrigos vindos da API
   const [abrigosLista, setAbrigosLista] = useState([]);
-  
-  // Estados para feedback visual (Carregando, Sucesso, Erro)
   const [carregando, setCarregando] = useState(false);
-  const [mensagem, setMensagem] = useState(null); // Pode ser sucesso ou erro
+  
+  // Estados para a Lógica de Pesquisa
+  const [pesquisando, setPesquisando] = useState(false);
+  const [buscaRealizada, setBuscaRealizada] = useState(false);
+  const [pessoaEncontrada, setPessoaEncontrada] = useState(null);
 
-  // 2. Buscar os abrigos ao carregar a tela para preencher o <select>
   useEffect(() => {
     const carregarAbrigos = async () => {
       try {
@@ -34,46 +33,71 @@ export default function PessoaForm() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
+    
+    // Se o usuário alterar nome ou data após pesquisar, bloqueia o salvamento e limpa o alerta
+    if (name === "nome_completo" || name === "data_nascimento") {
+      setBuscaRealizada(false);
+      setPessoaEncontrada(null);
+    }
   };
 
-  // 3. Função para enviar os dados via POST
+  const handlePesquisar = async () => {
+    if (!form.nome_completo || !form.data_nascimento) {
+      alert("⚠️ Preencha Nome Completo e Data de Nascimento para pesquisar.");
+      return;
+    }
+
+    setPesquisando(true);
+    setPessoaEncontrada(null);
+
+    try {
+      const resposta = await fetch('https://projetofinalfullstack-backend-api.onrender.com/pessoas');
+      const pessoas = await resposta.json();
+
+      const existente = pessoas.find(p => 
+        p.nome_completo.toLowerCase() === form.nome_completo.toLowerCase() &&
+        p.data_nascimento === form.data_nascimento
+      );
+
+      if (existente) {
+        setPessoaEncontrada(existente);
+      } else {
+        alert("✅ Pessoa não localizada em nenhum abrigo. Pode prosseguir com o registro.");
+      }
+      
+      setBuscaRealizada(true);
+    } catch (error) {
+      console.error("Erro ao pesquisar:", error);
+      alert("❌ Erro ao conectar com o servidor para pesquisa.");
+    } finally {
+      setPesquisando(false);
+    }
+  };
+
   const handleSalvar = async () => {
-    // Validação básica de campos vazios
-    if (!form.nome_completo || !form.data_nascimento || !form.endereco_residencial || !form.id_abrigo) {
-      alert("Por favor, preencha todos os campos.");
+    if (!form.id_abrigo || !form.endereco_residencial) {
+      alert("Por favor, preencha todos os campos habilitados.");
       return;
     }
 
     setCarregando(true);
-    setMensagem(null); // Limpa mensagens anteriores
-
     try {
       const resposta = await fetch('https://projetofinalfullstack-backend-api.onrender.com/pessoas', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(form) // Envia o state formatado como JSON
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form) 
       });
 
       const dados = await resposta.json();
 
-      // Verifica se a resposta NÃO foi OK (ex: Erro 400 de Duplicidade ou Sem Vaga)
       if (!resposta.ok) {
-        // Lógica para tratar a DUPLICIDADE conforme o seu backend enviou no json 'localizacao'
-        if (dados.localizacao) {
-          alert(`⚠️ ${dados.mensagem}\n\nEncontrado no: ${dados.localizacao.abrigo}\nEndereço: ${dados.localizacao.endereco}\nRegistrado em: ${dados.localizacao.data_registro}`);
-        } else {
-          // Lógica para erro de "Abrigo sem vagas"
-          alert(`❌ ${dados.mensagem}`);
-        }
+        alert(`❌ ${dados.mensagem}`);
         setCarregando(false);
         return;
       }
 
-      // Se passou pelas validações e a resposta for OK (Sucesso)
-      alert("✅ Pessoa registrada com sucesso!");
-      handleCancelar(); // Limpa os campos do formulário
+      alert("✅ Pessoa registrada no sistema com sucesso!");
+      handleCancelar(); 
       
     } catch (error) {
       console.error("Erro ao salvar:", error);
@@ -83,7 +107,6 @@ export default function PessoaForm() {
     }
   };
 
-  // 4. Limpa o formulário
   const handleCancelar = () => {
     setForm({
       nome_completo: "",
@@ -91,37 +114,65 @@ export default function PessoaForm() {
       endereco_residencial: "",
       id_abrigo: "",
     });
+    setBuscaRealizada(false);
+    setPessoaEncontrada(null);
   };
 
   return (
     <section className={Styles.SecaoPessoas}>
       <section className={Styles.forms}>
         <div className={Styles.ContainerTitulo}>
-          <h2>Cadastro de Pessoa Desaparecida</h2>
+          <h2>Busca e Cadastro de Pessoas</h2>
         </div>
 
+        {/* ALERTA: PESSOA ENCONTRADA */}
+        {pessoaEncontrada && (
+          <div className={Styles.alertWarningBox}>
+            <h3 className={Styles.alertWarningTitle}>⚠️ Pessoa já abrigada!</h3>
+            <p><strong>Nome:</strong> {pessoaEncontrada.nome_completo}</p>
+            <p><strong>Abrigo:</strong> {pessoaEncontrada.nome_abrigo}</p>
+            <p><strong>Endereço do Abrigo:</strong> {pessoaEncontrada.endereco_abrigo}</p>
+            <p><strong>Registrado em:</strong> {pessoaEncontrada.data_cadastrada}</p>
+          </div>
+        )}
+
         <form>
-          <div className={Styles.group}>
-            <label>Nome Completo</label>
-            <input
-              type="text"
-              name="nome_completo"
-              value={form.nome_completo}
-              onChange={handleChange}
-              placeholder="Ex: João da Silva"
-            />
+          {/* CAMPOS DE PESQUISA LADO A LADO */}
+          <div className={Styles.groupRow}>
+            <div className={Styles.group} style={{ flex: 2 }}>
+              <label>Nome Completo</label>
+              <input
+                type="text"
+                name="nome_completo"
+                value={form.nome_completo}
+                onChange={handleChange}
+                placeholder="Ex: João da Silva"
+              />
+            </div>
+
+            <div className={Styles.group} style={{ flex: 1 }}>
+              <label>Data de Nascimento</label>
+              <input
+                type="date"
+                name="data_nascimento"
+                value={form.data_nascimento}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className={Styles.group} style={{ justifyContent: 'flex-end' }}>
+              <button 
+                type="button" 
+                onClick={handlePesquisar}
+                disabled={pesquisando}
+                className={Styles.btnBuscar}
+              >
+                {pesquisando ? "..." : "🔍 Pesquisar"}
+              </button>
+            </div>
           </div>
 
-          <div className={Styles.group}>
-            <label>Data de Nascimento</label>
-            <input
-              type="date"
-              name="data_nascimento"
-              value={form.data_nascimento}
-              onChange={handleChange}
-            />
-          </div>
-
+          {/* CAMPOS FIXOS */}
           <div className={Styles.group}>
             <label>Endereço Residencial</label>
             <input
@@ -134,12 +185,16 @@ export default function PessoaForm() {
           </div>
 
           <div className={Styles.group}>
-            <label>Selecionar Abrigo</label>
-            <select name="id_abrigo" value={form.id_abrigo} onChange={handleChange}>
+            <label>Vincular a qual Abrigo?</label>
+            <select 
+              name="id_abrigo" 
+              value={form.id_abrigo} 
+              onChange={handleChange}
+              disabled={!buscaRealizada || pessoaEncontrada}
+            >
               <option value="">Selecione um abrigo</option>
-              {/* Mapeando a lista de abrigos da API */}
               {abrigosLista.map((abrigo) => (
-                <option key={abrigo.id} value={abrigo.id}>
+                <option key={abrigo.id} value={abrigo.id} disabled={abrigo.vagas_disponiveis <= 0}>
                   {abrigo.nome_abrigo} ({abrigo.vagas_disponiveis > 0 ? `${abrigo.vagas_disponiveis} vagas` : "Lotação máxima"})
                 </option>
               ))}
@@ -155,9 +210,9 @@ export default function PessoaForm() {
               className={`${Styles.Buttons} ${Styles.ButtonSalvar}`} 
               type="button" 
               onClick={handleSalvar}
-              disabled={carregando}
+              disabled={carregando || !buscaRealizada || pessoaEncontrada}
             >
-              {carregando ? "Salvando..." : "Salvar"}
+              {carregando ? "Salvando..." : "Salvar Registro"}
             </button>
           </div>
         </form>

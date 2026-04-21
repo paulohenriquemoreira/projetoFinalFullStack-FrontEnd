@@ -6,7 +6,6 @@
 
 .container {
   max-width: 56rem;
-  //height: 85vh;
   margin: 0 auto;
   padding: 40px 20px; 
   display: flex;
@@ -29,6 +28,12 @@
 }
 
 /* Estilo do Botão de Adicionar */
+.ContainerButton {
+  width: 25vw;
+  display: flex;
+  justify-content: space-between;
+}
+
 .buttonAdd {
   background-color: $cor-fundo-ativo;
   color: $ColorBranco;
@@ -41,9 +46,14 @@
   font-family: $fontePrincipal;
 
   &:hover {
-    // Escurece levemente o botão no hover para feedback visual
     opacity: 0.9; 
   }
+}
+
+.buttonAddPessoas {
+  background-color: $ColorBranco;
+  color: $ColorVermelho;
+  border: 1px solid $ColorVermelho;
 }
 
 /* =========================================
@@ -64,20 +74,11 @@
   height: auto;
   animation: pulsarCasa 1.5s infinite ease-in-out;
 }
-//Animação de ícone de casa ao carregar abrigos
+
 @keyframes pulsarCasa {
-  0% {
-    transform: scale(0.9);
-    opacity: 0.7;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(0.9);
-    opacity: 0.7;
-  }
+  0% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.7; }
 }
 
 .loadingText {
@@ -138,13 +139,6 @@
     align-items: center;
     gap: 15px;
 
-    /*.Circulo {
-      width: 40px;
-      height: 40px;
-      background-color: $ColorBranco;
-      border-radius: 50%;
-    }
-    */
     h3 {
       margin: 0;
       font-size: 1.2rem; 
@@ -203,8 +197,20 @@
   font-family: $fonteSecundaria;
 }
 
+.badgeEsgotado {
+  background-color: $ColorVermelho;
+  color: $ColorBranco;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  font-weight: bold; 
+  display: inline-block;
+  font-family: $fontePrincipal; 
+  letter-spacing: 0.5px; 
+}
+
 /* =========================================
-   Estilos do Formulário de Cadastro (AbrigoForm.jsx)
+   Estilos dos Formulários (AbrigoForm e PessoaDesalojadaForm)
    ========================================= */
 
 .formContainer {
@@ -261,7 +267,6 @@
   display: flex;
   gap: 15px;
   
-  // Em telas menores, quebra para coluna
   @media (max-width: 600px) {
     flex-direction: column;
   }
@@ -297,7 +302,7 @@
   .btnCancelar {
     background-color: transparent;
     color: $ColorCinza;
-    border: 1px solid #ccc;
+    border: 1px solid $ColorBranco;
   }
 
   .btnSalvar {
@@ -306,26 +311,59 @@
   }
 }
 
-.badgeGreen {
-  background-color: $BackgroundBagde;
-  color: $ColorVerde;
-  padding: 4px 12px;
-  border-radius: 16px;
-  font-size: 0.85rem;
-  font-weight: bold;
-  display: inline-block;
-  font-family: $fonteSecundaria;
+/* --- NOVAS CLASSES PARA PESSOA DESALOJADA FORM --- */
+
+.flex2 {
+  flex: 2;
 }
 
-/*Classe para quando as vagas acabarem */
-.badgeEsgotado {
-  background-color: $ColorVermelho;
+.flex1 {
+  flex: 1;
+}
+
+.btnBuscarContainer {
+  flex: 0.5;
+  justify-content: flex-end; // Empurra o botão de busca para baixo para alinhar com os inputs
+}
+
+.btnBuscar {
+  padding: 10px;
+  height: 42px; // Altura para combinar com os inputs
+  background-color: $ColorCinza;
   color: $ColorBranco;
-  padding: 4px 12px;
-  border-radius: 16px;
-  font-size: 0.85rem;
-  font-weight: bold; 
-  display: inline-block;
-  font-family: $fontePrincipal; 
-  letter-spacing: 0.5px; 
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  font-weight: bold;
+  font-family: $fontePrincipal;
+  transition: opacity 0.3s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.alertWarningBox {
+  background-color: $errorTextBackground;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid $errorTextBorder;
+
+  p {
+    margin: 5px 0;
+    color:$ColorCinza;
+    font-family: $fonteSecundaria;
+  }
+}
+
+.alertWarningTitle {
+  color: $errorTextColor;
+  margin: 0 0 10px 0;
+  font-family: $fontePrincipal;
 }
