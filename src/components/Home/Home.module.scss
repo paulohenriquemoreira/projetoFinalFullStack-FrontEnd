@@ -1,7 +1,100 @@
 @use'../../styles/variaveis.scss' as*;
 
 
-.Home{
-    height: 70vh;
-    background-color: blue;
+.SecaoHome{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 90vh;
+    
 }
+
+
+.SecaoTituloHome{
+    width: 80vw;
+    height: 35vh;
+    text-align: center;    
+    padding: 3rem 1rem;
+    margin-bottom: 1rem;
+
+
+    .TituloHome{
+        font-family: $fontePrincipal;
+        font-size: 2.5rem;
+        color: $ColorVermelho;
+        margin-bottom: 2rem;
+    }
+
+    .SubtituloHome{
+        font-family: $fonteSecundaria;
+        font-size: 1.3rem;
+        color: $ColorCinza;
+    }
+}
+
+.CardsButtons{
+    width: 65vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+.LinkCard{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+    width: 30vw;
+    height: 40vh;
+    background-color: $ColorVerde;
+    border-radius: 10px;
+    
+}
+
+.LinkCardPessoas{
+    background-color: $ColorVermelho;
+
+}
+
+
+.Card{
+    
+    color: $ColorBranco;
+
+    .CardImg{
+        height: 15vh;
+    }
+
+    .CardTitulo{
+        font-family: $fontePrincipal;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .CardTexto{
+        font-family: $fonteSecundaria;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+}
+
+.SecaoAviso{
+    width: 40vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+    padding: 1rem 0;
+
+    .SecaoAvisoImg{
+        height: 3vh;
+        margin-right: 0.5rem;
+    }
+
+    .SecaoAvisoTexto{
+        font-family: $fonteSecundaria;
+        color: $ColorCinza;
+    }
+
+}
+

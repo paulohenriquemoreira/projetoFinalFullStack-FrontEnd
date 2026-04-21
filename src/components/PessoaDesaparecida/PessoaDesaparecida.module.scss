@@ -1,0 +1,77 @@
+@use'../../styles/variaveis.scss' as*;
+
+.SecaoPessoas{
+    height: 90vh;
+    display: flex;
+    align-items: center;
+}
+
+.forms {
+  width: 50vw;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 0.5rem;
+  color: $ColorVermelho;
+  font-family: $fonteSecundaria;
+  font-weight: 700;
+  border: $ColorVermelho 0.5rem solid;
+  background-color: $ColorBranco;
+
+  .ContainerTitulo{
+    font-family: $fontePrincipal;
+    font-size: 1.5rem;
+    text-align: center;
+    color: $ColorVermelho;
+    padding: 1.5rem 0.5rem;
+    
+  }
+  
+}
+
+
+.dataRegistro {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+
+  label {
+    margin-bottom: 5px;
+  }
+
+  input,
+  select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+}
+
+.ContainerButtons {
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .Buttons{
+    width: 20vw;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    cursor: pointer;
+    background-color: $ColorCinza;
+    color: $ColorBranco;
+    font-family: $fonteSecundaria;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  .ButtonSalvar{
+    background-color: $ColorVermelho;
+    
+  }
+}

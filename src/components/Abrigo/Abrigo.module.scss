@@ -1,6 +1,26 @@
 @use'../../styles/variaveis.scss' as*;
 
-.Abrigo{
-    height: 70vh;
-    background-color: yellowgreen;
+.Abrigos{
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ContainerTitulo{
+    width: 90vw;
+    padding: 1rem;
+
+    .ContainerTitulo{
+        font-family: $fontePrincipal;
+        font-size: 2rem;
+        color: $ColorVermelho;
+    }
+}
+
+.ContainerAccordion{
+    width: 80vw;
+    height: 60vh;
+    border-radius: 1rem;
+    background-color: $ColorCinza;
 }
