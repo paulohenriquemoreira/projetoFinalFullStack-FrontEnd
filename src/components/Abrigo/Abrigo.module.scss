@@ -1,26 +1,331 @@
-@use'../../styles/variaveis.scss' as*;
+@use '../../styles/variaveis.scss' as *;
 
-.Abrigos{
-    height: 90vh;
+/* =========================================
+   Estilos Gerais da Página de Abrigos (Abrigo.jsx)
+   ========================================= */
+
+.container {
+  max-width: 56rem;
+  //height: 85vh;
+  margin: 0 auto;
+  padding: 40px 20px; 
+  display: flex;
+  flex-direction: column;
+}
+
+/* Contêiner para alinhar Título e Botão na mesma linha */
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  .title {
+    margin-bottom: 0; 
+    color: $cor-fundo-ativo;
+    font-size: 1.8rem;
+    font-family: $fontePrincipal; 
+  }
+}
+
+/* Estilo do Botão de Adicionar */
+.buttonAdd {
+  background-color: $cor-fundo-ativo;
+  color: $ColorBranco;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: $fontePrincipal;
+
+  &:hover {
+    // Escurece levemente o botão no hover para feedback visual
+    opacity: 0.9; 
+  }
+}
+
+/* =========================================
+   Estados (Carregando, Erro e Vazio)
+   ========================================= */
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh; 
+  gap: 15px; 
+}
+
+.loadingIcon {
+  width: 60px; 
+  height: auto;
+  animation: pulsarCasa 1.5s infinite ease-in-out;
+}
+//Animação de ícone de casa ao carregar abrigos
+@keyframes pulsarCasa {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+}
+
+.loadingText {
+  text-align: center;
+  font-size: 1.1rem;
+  color: $ColorCinza;
+  font-style: italic;
+  font-family: $fonteSecundaria; 
+}
+
+.errorText {
+  text-align: center;
+  padding: 20px;
+  color: $errorTextColor;
+  font-weight: bold;
+  background-color: $errorTextBackground;
+  border-radius: 8px;
+  border: 1px solid $errorTextBorder;
+}
+
+.emptyText {
+  text-align: center;
+  padding: 20px;
+  color: $ColorCinza;
+  background-color: $emptyTextBackground;
+  border-radius: 8px;
+  border: 1px dashed $emptyTextBorder;
+}
+
+/* =========================================
+   Estilos do Item do Acordeão (AbrigoItem.jsx)
+   ========================================= */
+
+.accordionItem {
+  width: 100%; 
+  border: 1px solid $cor-borda; 
+  margin-bottom: 15px;
+  border-radius: 0.5rem;
+  overflow: hidden; 
+}
+
+.accordionHeader {
+  padding: 15px 20px;
+  background-color: $cor-fundo-cabecalho;
+  color: $cor-texto-claro;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease;
+
+  &.active {
+    background-color: $cor-fundo-ativo;
+  }
+
+  .headerTitle {
     display: flex;
-    flex-direction: column;
     align-items: center;
-}
+    gap: 15px;
 
-.ContainerTitulo{
-    width: 90vw;
-    padding: 1rem;
-
-    .ContainerTitulo{
-        font-family: $fontePrincipal;
-        font-size: 2rem;
-        color: $ColorVermelho;
+    /*.Circulo {
+      width: 40px;
+      height: 40px;
+      background-color: $ColorBranco;
+      border-radius: 50%;
     }
+    */
+    h3 {
+      margin: 0;
+      font-size: 1.2rem; 
+      font-family: $fontePrincipal;
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+      opacity: 0.8;      
+      font-family: $fonteSecundaria;
+    }
+  }
+
+  .icon {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
 }
 
-.ContainerAccordion{
-    width: 80vw;
-    height: 60vh;
-    border-radius: 1rem;
-    background-color: $ColorCinza;
+.accordionBody {
+  padding: 0 20px;
+  background-color: $cor-fundo-detalhes;
+  border-top: 1px solid $cor-fundo-ativo;
+}
+
+.detailRow {
+  display: grid;
+  grid-template-columns: 200px 1fr; 
+  padding: 15px 0;
+  border-bottom: 1px solid $cor-linha-separadora; 
+
+  &:last-child {
+    border-bottom: none; 
+  }
+
+  .label {
+    font-weight: bold;
+    color: $label; 
+    font-family: $fontePrincipal;
+  }
+
+  .value {
+    color: $ColorCinza;
+    font-family: $fonteSecundaria;
+  }
+}
+
+.badgeGreen {
+  background-color: $BackgroundBagde;
+  color: $ColorVerde;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  display: inline-block;
+  font-family: $fonteSecundaria;
+}
+
+/* =========================================
+   Estilos do Formulário de Cadastro (AbrigoForm.jsx)
+   ========================================= */
+
+.formContainer {
+  background-color: $ColorBranco;
+  border: 1px solid $cor-borda;
+  border-radius: 8px;
+  padding: 30px;
+  margin-bottom: 20px;
+}
+
+.formTitle {
+  color: $cor-fundo-ativo;
+  font-family: $fontePrincipal;
+  margin-bottom: 25px;
+  font-size: 1.5rem;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+
+  label {
+    font-weight: bold;
+    color: $label;
+    font-family: $fontePrincipal;
+    font-size: 0.9rem;
+  }
+
+  input, select {
+    padding: 10px 15px;
+    border: 1px solid $ColorCinza;
+    border-radius: 6px;
+    font-family: $fonteSecundaria;
+    font-size: 1rem;
+    color: $ColorCinza;
+    outline: none;
+    transition: border-color 0.3s;
+
+    &:focus {
+      border-color: $cor-fundo-ativo;
+    }
+  }
+}
+
+.formRow {
+  display: flex;
+  gap: 15px;
+  
+  // Em telas menores, quebra para coluna
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid $cor-linha-separadora;
+
+  button {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-family: $fontePrincipal;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.3s;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .btnCancelar {
+    background-color: transparent;
+    color: $ColorCinza;
+    border: 1px solid #ccc;
+  }
+
+  .btnSalvar {
+    background-color: $cor-fundo-ativo;
+    color: $ColorBranco;
+  }
+}
+
+.badgeGreen {
+  background-color: $BackgroundBagde;
+  color: $ColorVerde;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  display: inline-block;
+  font-family: $fonteSecundaria;
+}
+
+/*Classe para quando as vagas acabarem */
+.badgeEsgotado {
+  background-color: $ColorVermelho;
+  color: $ColorBranco;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  font-weight: bold; 
+  display: inline-block;
+  font-family: $fontePrincipal; 
+  letter-spacing: 0.5px; 
 }
