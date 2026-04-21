@@ -71,7 +71,7 @@ export default function Abrigo() {
               </button>
               <button
                 // Adicionei uma margem à esquerda para desgrudar os botões
-                className={Styles.buttonAdd}
+                className={`${Styles.buttonAdd} ${Styles.buttonAddPessoas}`}
                 style={{ marginLeft: '10px' }} 
                 onClick={() => setTelaAtual('formPessoa')}
               >

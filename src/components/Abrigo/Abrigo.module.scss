@@ -6,10 +6,14 @@
 
 .container {
   max-width: 56rem;
+  min-height: 70vh;
   margin: 0 auto;
   padding: 40px 20px; 
   display: flex;
   flex-direction: column;
+
+
+
 }
 
 /* Contêiner para alinhar Título e Botão na mesma linha */
@@ -300,9 +304,9 @@
   }
 
   .btnCancelar {
-    background-color: transparent;
+    background-color: $ColorBranco;
     color: $ColorCinza;
-    border: 1px solid $ColorBranco;
+    border: 1px solid $ColorVermelho;
   }
 
   .btnSalvar {

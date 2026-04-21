@@ -17,6 +17,7 @@ export default function PessoaForm() {
   const [buscaRealizada, setBuscaRealizada] = useState(false);
   const [pessoaEncontrada, setPessoaEncontrada] = useState(null);
 
+  // 1. Carrega os Abrigos no Dropdown (CORREÇÃO: Endpoint /abrigos)
   useEffect(() => {
     const carregarAbrigos = async () => {
       try {
@@ -34,13 +35,14 @@ export default function PessoaForm() {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
     
-    // Se o usuário alterar nome ou data após pesquisar, bloqueia o salvamento e limpa o alerta
+    // Se o usuário alterar nome ou data após pesquisar, bloqueia o salvamento e limpa a busca
     if (name === "nome_completo" || name === "data_nascimento") {
       setBuscaRealizada(false);
       setPessoaEncontrada(null);
     }
   };
 
+  // 2. Pesquisa se a pessoa já existe (Endpoint /pessoas)
   const handlePesquisar = async () => {
     if (!form.nome_completo || !form.data_nascimento) {
       alert("⚠️ Preencha Nome Completo e Data de Nascimento para pesquisar.");
@@ -74,6 +76,7 @@ export default function PessoaForm() {
     }
   };
 
+  // 3. Salva a nova pessoa desaparecida vinculando ao abrigo (Endpoint /pessoas)
   const handleSalvar = async () => {
     if (!form.id_abrigo || !form.endereco_residencial) {
       alert("Por favor, preencha todos os campos habilitados.");
@@ -107,6 +110,7 @@ export default function PessoaForm() {
     }
   };
 
+  // 4. Limpa todo o formulário
   const handleCancelar = () => {
     setForm({
       nome_completo: "",
@@ -172,15 +176,16 @@ export default function PessoaForm() {
             </div>
           </div>
 
-          {/* CAMPOS FIXOS */}
+          {/* CAMPOS FIXOS (Só habilitam após a pesquisa ser feita e não encontrar ninguém) */}
           <div className={Styles.group}>
-            <label>Endereço Residencial</label>
+            <label>Endereço Residencial (Origem)</label>
             <input
               type="text"
               name="endereco_residencial"
               value={form.endereco_residencial}
               onChange={handleChange}
               placeholder="Endereço de origem da pessoa"
+              disabled={!buscaRealizada || pessoaEncontrada}
             />
           </div>
 
@@ -202,7 +207,7 @@ export default function PessoaForm() {
           </div>
 
           <div className={Styles.ContainerButtons}>
-            <button className={Styles.Buttons} type="button" onClick={handleCancelar} disabled={carregando}>
+            <button className={`${Styles.Buttons} ${Styles.ButtonsCancelar}`}  type="button" onClick={handleCancelar} disabled={carregando}>
               Cancelar
             </button>
 
