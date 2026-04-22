@@ -132,12 +132,12 @@ O banco de dados `database.db` é relacional e utiliza chaves estrangeiras para 
         title="Lista de Abrigo"
     />
     <img 
-        height="265"
+        height="132"
         src="./src/prints_projeto/addabrigo.png"
         title="add Abrigo"
     />
     <img 
-        height="265"
+        height="132"
         src="./src/prints_projeto/ADICIONA PESSOA.png"
         title="Add Abrigo"
     />
@@ -153,13 +153,20 @@ O banco de dados `database.db` é relacional e utiliza chaves estrangeiras para 
 
 -----
 
-   ## Apresentação do Projeto - Telas Pesquisa de Pessoa Registrada e Resultado de Pesquisa
+   ## Apresentação do Projeto - Tela Pesquisa de Pessoa Registrada e Resultado de Pesquisa
+
 <p align="left"> 
     <img 
         height=""
         src="./src/prints_projeto/pesquisa de pessoas.png"
         title="Pesquisa registro de pessoa"
     />
+</p>
+
+
+   ## Apresentação do Projeto - Tela de Resultado de Pesquisa
+
+<p align="left"> 
     <img 
         height=""
         src="./src/prints_projeto/pesquisa de pessoas com resultado.png"
