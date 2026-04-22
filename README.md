@@ -132,12 +132,12 @@ O banco de dados `database.db` é relacional e utiliza chaves estrangeiras para 
         title="Lista de Abrigo"
     />
     <img 
-        height="250"
+        height="245"
         src="./src/prints_projeto/addabrigo.png"
         title="add Abrigo"
     />
     <img 
-        height="250"
+        height="245"
         src="./src/prints_projeto/ADICIONA PESSOA.png"
         title="Add Abrigo"
     />
