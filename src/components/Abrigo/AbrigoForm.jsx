@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Styles from './Abrigo.module.scss'; 
 
-// NOME CORRETO DA FUNÇÃO AQUI: AbrigoForm
+
 export default function AbrigoForm({ onCancelar, onSucesso }) {
   const [form, setForm] = useState({
     nome_abrigo: "",

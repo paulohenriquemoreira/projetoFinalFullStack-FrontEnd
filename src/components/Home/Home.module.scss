@@ -1,41 +1,51 @@
 @use'../../styles/variaveis.scss' as*;
 
 
+/* =========================================================================
+   Mobile First - Estilos Gerais da Página de Home.jsx
+   ========================================================================= */
+
+
 .SecaoHome{
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: 90vh;
+    height: 100dvh;
+    padding: 1rem 0;
     
 }
 
 
 .SecaoTituloHome{
-    width: 80vw;
-    height: 35vh;
+    width: 96vw;
+    height: 28vh;
     text-align: center;    
-    padding: 3rem 1rem;
-    margin-bottom: 1rem;
+    padding: 1rem;
 
 
     .TituloHome{
         font-family: $fontePrincipal;
-        font-size: 2.5rem;
+        font-size: 1.75rem;
         color: $ColorVermelho;
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
     }
 
     .SubtituloHome{
         font-family: $fonteSecundaria;
-        font-size: 1.3rem;
+        font-size: 0.75rem;
         color: $ColorCinza;
     }
 }
 
 .CardsButtons{
-    width: 65vw;
+    width: 85vw;
+    height: 55vh;
     display: flex;
+    align-items: center;
+    flex-direction: column;
     justify-content: space-around;
+    
+
 }
 
 .LinkCard{
@@ -44,16 +54,23 @@
     flex-direction: column;
     justify-content: space-evenly;
     text-align: center;
-    width: 30vw;
-    height: 40vh;
+    width: 60vw;
+    height: 25vh;
     background-color: $ColorVerde;
     border-radius: 10px;
+    padding: 1rem;
+
+    &:hover{
+       background-color: $VerdeHover;
+    }
     
 }
 
 .LinkCardPessoas{
     background-color: $ColorVermelho;
-
+        &:hover{
+            background-color: $VermelhoHover;
+        }
 }
 
 
@@ -62,39 +79,232 @@
     color: $ColorBranco;
 
     .CardImg{
-        height: 15vh;
+        height: 8vh;
     }
 
     .CardTitulo{
         font-family: $fontePrincipal;
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
     }
 
     .CardTexto{
         font-family: $fonteSecundaria;
-        font-size: 1rem;
-        font-weight: 600;
+        font-size: 0.8rem;
+
     }
 }
 
 .SecaoAviso{
-    width: 40vw;
+    width: 80vw;
     display: flex;
     align-items: center;
-    justify-content: center;
     margin: 1rem 0;
     padding: 1rem 0;
 
     .SecaoAvisoImg{
-        height: 3vh;
+        height: 2vh;
         margin-right: 0.5rem;
     }
 
     .SecaoAvisoTexto{
         font-family: $fonteSecundaria;
+        font-size: 0.8rem;
         color: $ColorCinza;
     }
 
 }
 
+
+// Responsividade Tablet
+
+@media(min-width:501px) and (max-width: 900px){
+        .SecaoHome{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            height: 80dvh;
+            padding: 1rem 0;
+            
+        }
+
+
+        .SecaoTituloHome{
+            width: 85vw;
+            height: 18vh;
+            text-align: center;    
+            padding: 1rem;
+
+
+            .TituloHome{
+                font-size: 2.5rem;
+            }
+
+            .SubtituloHome{
+                font-size: 1.2rem;
+            }
+        }
+
+        .CardsButtons{
+            width: 85vw;
+            height: 55vh;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        .LinkCard{
+            width: 60vw;
+            height: 25vh;
+            padding: 1rem 1.8rem;
+
+            
+        }
+
+        .LinkCardPessoas{
+            background-color: $ColorVermelho;
+                &:hover{
+                    background-color: $VermelhoHover;
+                }
+        }
+
+
+        .Card{
+            
+            color: $ColorBranco;
+
+            .CardImg{
+                height: 10vh;
+            }
+
+            .CardTitulo{
+                font-size: 1.8rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .CardTexto{
+                font-size: 1.3rem;
+
+            }
+        }
+
+        .SecaoAviso{
+            width: 80vw;
+            margin: 1rem 0;
+            padding: 1rem 0;
+
+            .SecaoAvisoImg{
+                height: 2vh;
+                margin-right: 0.5rem;
+            }
+
+            .SecaoAvisoTexto{
+                font-size: 1.2rem;
+                
+            }
+
+        }
+
+}
+
+
+// Responsividade Laptop/Notebook   /(min-width:901px) and (max-width: 1728px)
+
+        @media(min-width:901px) and (max-width: 1728px){
+        .SecaoHome{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            height: 95dvh;
+            
+        }
+
+
+        .SecaoTituloHome{
+            width: 75vw;
+            height: 35vh;
+            text-align: center;    
+            padding: 1rem 1rem;
+            margin-bottom: 1rem;
+            
+
+
+            .TituloHome{
+                font-size: 2.95rem;
+                margin-bottom: 1rem;
+            }
+
+            .SubtituloHome{
+                font-size: 1.2rem;
+            }
+        }
+
+        .CardsButtons{
+            width: 70vw;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+
+        .LinkCard{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-evenly;
+            text-align: center;
+            width: 30vw;
+            height: 40vh;
+            background-color: $ColorVerde;
+            border-radius: 10px;
+            
+        }
+
+        .LinkCardPessoas{
+            background-color: $ColorVermelho;
+
+        }
+
+
+        .Card{
+            
+            color: $ColorBranco;
+
+            .CardImg{
+                height: 15vh;
+            }
+
+            .CardTitulo{
+                font-family: $fontePrincipal;
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .CardTexto{
+                font-family: $fonteSecundaria;
+                font-size: 1rem;
+                font-weight: 600;
+            }
+        }
+
+        .SecaoAviso{
+            width: 40vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0;
+            padding: 1rem 0;
+
+            .SecaoAvisoImg{
+                height: 3vh;
+                margin-right: 0.5rem;
+            }
+
+            .SecaoAvisoTexto{
+                font-family: $fonteSecundaria;
+                color: $ColorCinza;
+            }
+
+        }
+
+}

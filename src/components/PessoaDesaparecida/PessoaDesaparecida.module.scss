@@ -1,7 +1,11 @@
 @use'../../styles/variaveis.scss' as *;
 
+/* =========================================================================
+   Mobile First - Estilos Gerais da Página de PessoaDesaparecida.jsx
+   ========================================================================= */
+
 .SecaoPessoas{
-  height: 110vh;
+  height: 100dvh;
   display: flex;
   align-items: center;
   background-image:
@@ -22,9 +26,9 @@
 }
 
 .forms {
-  width: 50vw;
+  width: 90vw;
   margin: 0 auto;
-  padding: 20px;
+  padding: 1rem;
   border-radius: 0.5rem;
   color: $ColorVermelho;
   font-family: $fonteSecundaria;
@@ -34,7 +38,7 @@
 
   .ContainerTitulo{
     font-family: $fontePrincipal;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     text-align: center;
     color: $ColorVermelho;
     padding: 1.5rem 0.5rem;
@@ -43,23 +47,23 @@
 
 .dataRegistro {
   font-weight: bold;
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
 }
 
 .group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
 
   label {
-    margin-bottom: 5px;
+    margin-bottom: 0.3rem;
   }
 
   input,
   select {
-    padding: 8px;
+    padding: 0.5rem;
     border: 1px solid $ColorCinzaClaro;
-    border-radius: 5px;
+    border-radius: 0.3rem;
     outline: none;
 
     &:disabled {
@@ -73,7 +77,7 @@
 /* NOVO: Alinha os campos na mesma linha */
 .groupRow {
   display: flex;
-  gap: 15px;
+  gap: 1rem;
   
   @media (max-width: 768px) {
     flex-direction: column;
@@ -86,7 +90,7 @@
   justify-content: space-between;
 
   .Buttons{
-    width: 20vw;
+    width: 30vw;
     border: none;
     border-radius: 0.5rem;
     padding: 1rem;
@@ -95,7 +99,7 @@
     color: $ColorBranco;
     font-family: $fonteSecundaria;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 0.8rem;
     transition: opacity 0.3s;
 
     &:disabled {
@@ -112,7 +116,8 @@
 }
 
   .ButtonSalvar{
-    background-color: $ColorVermelho;
+    background-color: $ColorVermelho;    
+    width: 35vw;
 
     &:hover{
       background-color: $cor-borda;
@@ -125,14 +130,14 @@
   background-color: $ColorCinza;
   color: $ColorBranco;
   border: none;
-  border-radius: 5px;
-  padding: 0 15px;
-  height: 35px; /* Altura para alinhar com o input */
+  border-radius: 0.3rem;
+  padding: 0 1rem;
+  height: 5vh; /* Altura para alinhar com o input */
   cursor: pointer;
   font-weight: bold;
   font-family: $fontePrincipal;
   transition: opacity 0.3s;
-  margin-bottom: 15px; // Para alinhar a base
+  margin-bottom: 1rem; // Para alinhar a base
 
   &:hover {
     opacity: 0.8;
@@ -146,13 +151,13 @@
 
 .alertWarningBox {
   background-color:$errorTextBackground;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 20px;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.2rem;
   border: 1px solid $errorTextBorder;
 
   p {
-    margin: 5px 0;
+    margin: 0.4rem 0;
     color: $ColorCinza;
     font-family: $fonteSecundaria;
     font-weight: normal;
@@ -161,7 +166,305 @@
 
 .alertWarningTitle {
   color: $errorTextColor;
-  margin: 0 0 10px 0;
+  margin: 0 0 0.8rem 0;
   font-family: $fontePrincipal;
   font-size: 1.2rem;
+}
+
+//Responsividade Tablet
+
+@media(min-width:501px) and (max-width: 900px){
+    .SecaoPessoas{
+      height: 80dvh;
+    }
+
+    .forms {
+      width: 90vw;
+
+      .ContainerTitulo{
+        font-size: 1.5rem;
+      }
+    }
+
+    .dataRegistro {
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+
+      label {
+        margin-bottom: 0.3rem;
+      }
+
+      input,
+      select {
+        padding: 0.5rem;
+        border: 1px solid $ColorCinzaClaro;
+        border-radius: 0.3rem;
+        outline: none;
+
+        &:disabled {
+          background-color: $ColorBranco;
+          cursor: not-allowed;
+          opacity: 0.7;
+        }
+      }
+    }
+
+    //Alinha os campos na mesma linha
+    .groupRow {
+      display: flex;
+      gap: 1rem;
+      
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
+    }
+
+    .ContainerButtons {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .Buttons{
+        width: 30vw;
+        border: none;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        font-weight: 700;
+        font-size: 0.8rem;
+        transition: opacity 0.3s;
+
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+      }
+
+    .ButtonsCancelar{
+        width: 30vw;
+          &:hover{
+          background-color: $ColorCinzaClaro;
+          color: $ColorPreta;
+        }
+    }
+
+      .ButtonSalvar{
+        background-color: $ColorVermelho;    
+        width: 30vw;
+
+        &:hover{
+          background-color: $cor-borda;
+        }
+      }
+    }
+
+    //Estilos do Botão Lupa e Alerta de Encontrado
+
+    .btnBuscar {
+      padding: 0 1rem;
+      height: 2.8vh; //Altura para alinhar com o input
+      margin-top: 1.4rem; // Para alinhar a base e topo com inputs
+
+      &:hover {
+        opacity: 0.8;
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+
+    .alertWarningBox {
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1.2rem;
+
+      p {
+        margin: 0.4rem 0;
+      }
+    }
+
+    .alertWarningTitle {
+      margin: 0 0 0.8rem 0;
+      font-size: 1.2rem;
+    }
+
+}
+
+
+// Responsividade Laptop/Notebook   /(min-width:901px) and (max-width: 1728px)
+
+@media(min-width:901px) and (max-width: 1728px){
+      .SecaoPessoas{
+        height: 110vh;
+        display: flex;
+        align-items: center;
+        background-image:
+          linear-gradient(rgba(7, 7, 7, 0.4), rgba(0, 0, 0, 0.623)),    
+          url('../../assets/desaparecidos.png');
+        background-repeat: no-repeat;
+        background-size: cover; 
+        background-position: center;
+        opacity: 0.6; 
+        transition: opacity 0.3s ease;
+
+          &:hover {
+          opacity: 1; 
+        }
+        
+
+        
+      }
+
+      .forms {
+        width: 50vw;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 0.5rem;
+        color: $ColorVermelho;
+        font-family: $fonteSecundaria;
+        font-weight: 700;
+        border: $ColorVermelho 0.5rem solid;
+        background-color: $ColorBranco;
+
+        .ContainerTitulo{
+          font-family: $fontePrincipal;
+          font-size: 1.5rem;
+          text-align: center;
+          color: $ColorVermelho;
+          padding: 1.5rem 0.5rem;
+        }
+      }
+
+      .dataRegistro {
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+
+      .group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+
+        label {
+          margin-bottom: 5px;
+        }
+
+        input,
+        select {
+          padding: 8px;
+          border: 1px solid $ColorCinzaClaro;
+          border-radius: 5px;
+          outline: none;
+
+          &:disabled {
+            background-color: $ColorBranco;
+            cursor: not-allowed;
+            opacity: 0.7;
+          }
+        }
+      }
+
+      //Alinha os campos na mesma linha
+      .groupRow {
+        display: flex;
+        gap: 15px;
+        
+        @media (max-width: 768px) {
+          flex-direction: column;
+        }
+      }
+
+      .ContainerButtons {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .Buttons{
+          width: 20vw;
+          border: none;
+          border-radius: 0.5rem;
+          padding: 1rem;
+          cursor: pointer;
+          background-color: $ColorCinza;
+          color: $ColorBranco;
+          font-family: $fonteSecundaria;
+          font-weight: 700;
+          font-size: 1rem;
+          transition: opacity 0.3s;
+
+          &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+          }
+        }
+
+      .ButtonsCancelar{
+            &:hover{
+            background-color: $ColorCinzaClaro;
+            color: $ColorPreta;
+          }
+      }
+
+        .ButtonSalvar{
+          background-color: $ColorVermelho;
+
+          &:hover{
+            background-color: $cor-borda;
+          }
+        }
+      }
+
+      //Estilos do Botão Lupa e Alerta de Encontrado
+      .btnBuscar {
+        background-color: $ColorCinza;
+        color: $ColorBranco;
+        border: none;
+        border-radius: 5px;
+        padding: 0 15px;
+        height: 35px; //Altura para alinhar com o input
+        cursor: pointer;
+        font-weight: bold;
+        font-family: $fontePrincipal;
+        transition: opacity 0.3s;
+        margin-bottom: 15px; // Para alinhar a base
+
+        &:hover {
+          opacity: 0.8;
+        }
+
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+      }
+
+      .alertWarningBox {
+        background-color:$errorTextBackground;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        border: 1px solid $errorTextBorder;
+
+        p {
+          margin: 5px 0;
+          color: $ColorCinza;
+          font-family: $fonteSecundaria;
+          font-weight: normal;
+        }
+      }
+
+      .alertWarningTitle {
+        color: $errorTextColor;
+        margin: 0 0 10px 0;
+        font-family: $fontePrincipal;
+        font-size: 1.2rem;
+      }
+
 }

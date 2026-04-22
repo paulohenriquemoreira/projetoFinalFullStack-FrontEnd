@@ -55,10 +55,20 @@ export default function Abrigo() {
     );
   }
 
+  //Altera Título da página de acordo com o botão acionado.
+  const titulosDaTela = {
+    lista: 'Abrigos Cadastrados',
+    formAbrigo: 'Adicione novo abrigo',
+    formPessoa: 'Adicione nova pessoa alojada'
+  };
+
   return (
     <section className={Styles.container}>
       <div className={Styles.headerContainer}>
-        <h1 className={Styles.title}>Abrigos Cadastrados</h1>
+        <h1 className={Styles.title}>
+          
+          {titulosDaTela[telaAtual] || 'Abrigos Cadastrados'}  
+        </h1>
 
         <div className={Styles.ContainerButton}>
           {telaAtual === 'lista' && (
@@ -66,16 +76,16 @@ export default function Abrigo() {
               <button
                 className={Styles.buttonAdd}
                 onClick={() => setTelaAtual('formAbrigo')}
+        
               >
                 + Adicionar Abrigo
               </button>
               <button
                 // Adicionei uma margem à esquerda para desgrudar os botões
                 className={`${Styles.buttonAdd} ${Styles.buttonAddPessoas}`}
-                style={{ marginLeft: '10px' }} 
                 onClick={() => setTelaAtual('formPessoa')}
               >
-                + Adicionar Pessoas
+                + Adicionar Pessoa
               </button>
             </>
           )}

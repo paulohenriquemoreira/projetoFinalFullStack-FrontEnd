@@ -50,7 +50,7 @@ export default function PessoaDesalojadaForm({ onCancelar, onSucesso }) {
       onSucesso();
     } catch (error) {
       console.error(error);
-      alert("❌ Erro ao registrar pessoa. Ela já pode estar no sistema.");
+      alert("❌ Erro ao registrar. Pessoa já registrada.");
     } finally {
       setSalvando(false);
     }
