@@ -7,13 +7,14 @@
   align-items: center;
   flex-direction: column;
   justify-content: space-evenly;
-  height: 30vh;
+  height: 55dvh;
   
 
         .Container{
             width: 100vw;
             display: flex;
             justify-content: space-between;
+            flex-direction: column;
             align-items: center;
             padding: 0 1.5rem;
         }
@@ -24,44 +25,74 @@
 .Brand{
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-evenly;
-    height: 15vh;
+    height: 12dvh;
+    width: 95vw;
+    padding: 1.5rem 0;
 
     .BrandContainer{
         display: flex;
         align-items: center;
         justify-content: space-around;
-        width: 28vw;
-
+        width: 75vw;
+        text-align: center;
+        
+    
 
         .imgHouseBrand{
-            height: 6vh;
+            height: 4dvh;
         }
 
         .TituloBrand{
             font-family: $fontePrincipal;
+            font-size: 1rem;
         }
 
-        p{
-            font-family: $fonteSecundaria;
-        }
+
     }
+}
+
+.DivTextBrand{
+    text-align: center;
+    width: 95vw;
+    padding: 0.5rem 0;
+
+    .TextBrand{
+        font-family: $fonteSecundaria;
+        font-size: 0.8rem;
+        
+        
+    }
+
 }
 
 
 .Contatos{
-    width: 35vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     font-family: $fontePrincipal;
     text-align: center;
+    padding: 1rem 0;
 
     .SectionContatos{
         margin-top: 1rem;
-        text-align: left;
+    }
+
+    .TituloContatos{
+        font-size: 1rem;
     }
 
     .ListaContatos{
         display: flex;
+        flex-direction: column;
         justify-content: space-evenly;
+        font-size: 0.8rem;
+
+        li{
+            margin-bottom: 1rem;
+        }
     }
 }
 
@@ -71,7 +102,188 @@
   margin: 0.5rem 0;
 }
 
-.Copy{
-    font-family: $fonteSecundaria;
-    font-size: 0.9rem;
+.SecaoCopy{
+    text-align: center;
+    padding: 1rem 0.8rem;
+    .Copy{
+        font-family: $fonteSecundaria;
+        font-size: 0.8rem;
+    }
+
 }
+
+//Responsividade Tablet
+
+@media(min-width:501px) and (max-width: 900px){
+        .Footer {
+            height: 55dvh;
+            
+
+                    .Container{
+                        padding: 0 1.5rem;
+                        
+            
+                    }
+
+
+        }
+
+            .Brand{
+                height: 15dvh;
+
+                .BrandContainer{
+                    width: 75vw;
+                    
+                    .imgHouseBrand{
+                        height: 4vh;
+                    }
+
+                    .TituloBrand{
+                        font-family: $fontePrincipal;
+                        font-size: 2.3rem;
+                    }
+
+
+                }
+            }
+
+            .DivTextBrand{
+                text-align: center;
+                width: 85vw;
+                padding: 0.5rem 0;
+
+                .TextBrand{
+                    font-family: $fonteSecundaria;
+                    font-size: 1.6rem;
+                    
+                }
+
+            }
+
+
+            .Contatos{
+                padding: 1rem 0;
+
+                .SectionContatos{
+                    margin-top: 1rem 0 0 0;
+                }
+
+                .TituloContatos{
+                    font-size: 2rem;
+                }
+
+                .ListaContatos{
+                    font-size: 1.5rem;
+
+                    li{
+                        margin-bottom: 1rem;
+                    }
+                }
+            }
+
+            .Divider{
+                width: 100vw;
+            }
+
+            .SecaoCopy{
+                padding: 1rem 0.8rem;
+                height: 10dvh;
+                .Copy{
+                    font-family: $fonteSecundaria;
+                    font-size: 1.5rem;
+                }
+
+            }
+
+
+}
+
+
+// Responsividade Laptop/Notebook   /(min-width:901px) and (max-width: 1728px)
+
+@media(min-width:901px) and (max-width: 1728px){
+        .Footer {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-evenly;
+            height: 40dvh;
+        
+
+                .Container{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 0 1.5rem;
+                }
+
+
+        }
+
+        .Brand{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            height: 15vh;
+            width: 35vw;
+            
+
+            .BrandContainer{
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                width: 30vw;
+
+
+                .imgHouseBrand{
+                    height: 6vh;
+                }
+
+                .TituloBrand{
+                    font-size: 1.5rem;
+                }
+
+                p{
+                    font-family: $fonteSecundaria;
+                }
+            }
+        }
+
+
+        .Contatos{
+            width: 36vw;
+            font-family: $fontePrincipal;
+            text-align: center;
+            
+
+            .SectionContatos{
+                margin-top: 1rem;
+                text-align: left;
+            }
+
+            .ListaContatos{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                width: 35vw;
+            }
+        }
+
+        .Divider{
+            color: $ColorBranco;
+            width: 100vw;
+            margin: 0.5rem 0;
+        }
+
+
+        .SecaoCopy{
+            height: 5dvh;
+
+                .Copy{
+                    font-size: 0.8rem;
+                }
+        }
+
+}
+

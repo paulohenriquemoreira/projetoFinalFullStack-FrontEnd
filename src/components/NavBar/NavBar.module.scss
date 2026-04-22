@@ -1,27 +1,31 @@
 @use'../../styles/variaveis.scss' as*;
 
+//Mobile First
+
 .Navbar{
     background-color: $ColorVermelho;
-    height: 13vh;
+    height: 15dvh;
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: space-between;
-    padding: 0 1rem;
+    padding: 1rem 0;
 
     .imgTitulo{
         display: flex;
         align-items: center;
         justify-content: space-around;
-        width: 85vh;
+        width: 40vh;
+        margin-bottom: 0.5rem;
 
             .ImgHouse{
-                height: 8vh !important;
+                height: 5vh !important;
             }
 
 
             .TituloNavBar{
                 font-family: $fontePrincipal;
-                font-size: 2rem;
+                font-size: 1rem;
                 color: $ColorBranco;
             }
 
@@ -35,13 +39,97 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    width: 40vw;
+    width:75vw;
     height: 6vh;
+    
 
         .ListaItemNav{
             font-family: $fonteSecundaria;
             font-weight: 400;
-            font-size: 1.2rem;
+            font-size: 0.8rem;
             color: $ColorBranco;
+        }
+}
+
+
+// Responsividade Tablet
+
+@media(min-width:501px) and (max-width: 900px){
+
+        .Navbar{
+
+            height: 12dvh;
+
+
+            .imgTitulo{
+                width: 40vh;
+                
+
+                    .ImgHouse{
+                        height: 5vh !important;
+                    }
+
+
+                    .TituloNavBar{
+                        font-family: $fontePrincipal;
+                        font-size: 1.8rem;
+                        color: $ColorBranco;
+                    }
+
+
+            }
+
+
+        }
+
+        .ListaNavBar{
+            width:65vw;
+
+                .ListaItemNav{
+                    font-size: 1.4rem;
+
+                }
+        }
+
+}
+
+
+
+// Responsividade Laptop/Notebook   /(min-width:901px) and (max-width: 1728px)
+
+@media(min-width:901px) and (max-width: 1728px){
+        .Navbar{
+            height: 15dvh;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 0 1.3rem;
+
+            .imgTitulo{
+
+                width: 83vh;
+
+                    .ImgHouse{
+                        height: 8vh !important;
+                    }
+
+
+                    .TituloNavBar{
+                        font-size: 2rem;
+                    }
+
+
+            }
+
+
+        }
+
+        .ListaNavBar{
+            width: 35vw;
+
+                .ListaItemNav{
+                    font-size: 1.3rem;
+                }
         }
 }
