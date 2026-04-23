@@ -1,6 +1,7 @@
 import React from "react";
 import Styles from "./Abrigo.module.scss";
 
+
 export default function AbrigoItem({ abrigo, isActive, onShow }) {
   // Variável para verificar se o abrigo está sem vagas
   const isEsgotado = abrigo.vagas_disponiveis <= 0;
@@ -61,6 +62,7 @@ export default function AbrigoItem({ abrigo, isActive, onShow }) {
           </div>
         </section>
       )}
+
     </section>
   );
 }

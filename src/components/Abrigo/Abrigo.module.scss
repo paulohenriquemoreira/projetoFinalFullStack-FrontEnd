@@ -403,6 +403,18 @@
   font-family: $fontePrincipal;
 }
 
+.Info{
+  display: flex;
+  justify-content: space-between;
+  background-color: $ColoBackgroundAzul;
+  color: $ColorAzul;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-family: $fonteSecundaria;
+  font-size: 0.75rem;
+  padding: 1rem 1.5rem;
+}
+
 
 // Responsividade Tablet
 
@@ -410,7 +422,7 @@
 
       .container {
         /* Acompanha a proteção do mobile */
-        min-height: calc(var(--vh, 1vh) * 100); 
+        min-height: calc(var(--vh, 1vh) * 70); 
         margin: 0 auto;
         padding: 40px 20px; 
         display: flex;
@@ -715,6 +727,16 @@
         margin: 0 0 10px 0;
         font-family: $fontePrincipal;
       }
+
+      .Info{
+        width: 80vw;
+        margin-top: 2rem;
+        font-size: 1.1rem;
+        padding: 1rem 1.5rem;
+      }
+
+
+
 }
 
 // Responsividade Laptop/Notebook - (min-width:901px) and (max-width: 1728px)
@@ -927,4 +949,14 @@
         margin: 0 0 0.5rem 0;
         font-family: $fontePrincipal;
       }
+
+
+      .Info{
+        justify-content: space-evenly;
+        width: 63vw;
+        margin-top: 2rem;
+        font-size: 0.9rem;
+        padding: 1rem 1.5rem;
+      }
+
 }

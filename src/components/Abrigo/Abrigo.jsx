@@ -4,6 +4,7 @@ import AbrigoForm from "./AbrigoForm";
 import PessoaDesalojadaForm from "./PessoaDesalojadaForm"; // <-- Novo Form
 import Styles from "./Abrigo.module.scss";
 import IconeCasa from "../../assets/house.svg";
+import Info from "../../assets/info.svg";
 
 export default function Abrigo() {
   // useEffect adicionado para travar a altura da tela no mobile
@@ -27,8 +28,6 @@ export default function Abrigo() {
     return () => window.removeEventListener("resize", setFixedViewport);
   }, []);
 
-
-
   const [abrigos, setAbrigos] = useState([]);
   const [abrigoAbertoId, setAbrigoAbertoId] = useState(null);
 
@@ -36,12 +35,14 @@ export default function Abrigo() {
   const [erro, setErro] = useState(null);
 
   // MUDANÇA AQUI: Controla qual tela renderizar ('lista', 'formAbrigo' ou 'formPessoa')
-  const [telaAtual, setTelaAtual] = useState('lista'); 
+  const [telaAtual, setTelaAtual] = useState("lista");
 
   const buscarAbrigos = async () => {
     setCarregando(true);
     try {
-      const resposta = await fetch("https://projetofinalfullstack-backend-api.onrender.com/abrigos");
+      const resposta = await fetch(
+        "https://projetofinalfullstack-backend-api.onrender.com/abrigos",
+      );
       if (!resposta.ok) {
         throw new Error("Falha ao buscar os dados dos abrigos");
       }
@@ -63,7 +64,11 @@ export default function Abrigo() {
     return (
       <section className={Styles.container}>
         <div className={Styles.loadingContainer}>
-          <img src={IconeCasa} alt="Carregando..." className={Styles.loadingIcon} />
+          <img
+            src={IconeCasa}
+            alt="Carregando..."
+            className={Styles.loadingIcon}
+          />
           <p className={Styles.loadingText}>Carregando abrigos...</p>
         </div>
       </section>
@@ -80,33 +85,31 @@ export default function Abrigo() {
 
   //Altera Título da página de acordo com o botão acionado.
   const titulosDaTela = {
-    lista: 'Abrigos Cadastrados',
-    formAbrigo: 'Adicione novo abrigo',
-    formPessoa: 'Adicione nova pessoa alojada'
+    lista: "Abrigos Cadastrados",
+    formAbrigo: "Adicione novo abrigo",
+    formPessoa: "Adicione nova pessoa alojada",
   };
 
   return (
     <section className={Styles.container}>
       <div className={Styles.headerContainer}>
         <h1 className={Styles.title}>
-          
-          {titulosDaTela[telaAtual] || 'Abrigos Cadastrados'}  
+          {titulosDaTela[telaAtual] || "Abrigos Cadastrados"}
         </h1>
 
         <div className={Styles.ContainerButton}>
-          {telaAtual === 'lista' && (
+          {telaAtual === "lista" && (
             <>
               <button
                 className={Styles.buttonAdd}
-                onClick={() => setTelaAtual('formAbrigo')}
-        
+                onClick={() => setTelaAtual("formAbrigo")}
               >
                 + Adicionar Abrigo
               </button>
               <button
                 // Adicionei uma margem à esquerda para desgrudar os botões
                 className={`${Styles.buttonAdd} ${Styles.buttonAddPessoas}`}
-                onClick={() => setTelaAtual('formPessoa')}
+                onClick={() => setTelaAtual("formPessoa")}
               >
                 + Adicionar Pessoa
               </button>
@@ -116,27 +119,27 @@ export default function Abrigo() {
       </div>
 
       {/* RENDERIZAÇÃO CONDICIONAL DAS 3 TELAS */}
-      {telaAtual === 'formAbrigo' && (
+      {telaAtual === "formAbrigo" && (
         <AbrigoForm
-          onCancelar={() => setTelaAtual('lista')}
+          onCancelar={() => setTelaAtual("lista")}
           onSucesso={() => {
-            setTelaAtual('lista');
+            setTelaAtual("lista");
             buscarAbrigos();
           }}
         />
       )}
 
-      {telaAtual === 'formPessoa' && (
+      {telaAtual === "formPessoa" && (
         <PessoaDesalojadaForm
-          onCancelar={() => setTelaAtual('lista')}
+          onCancelar={() => setTelaAtual("lista")}
           onSucesso={() => {
-            setTelaAtual('lista');
+            setTelaAtual("lista");
             buscarAbrigos(); // Atualiza abrigos pois uma vaga foi consumida
           }}
         />
       )}
 
-      {telaAtual === 'lista' && (
+      {telaAtual === "lista" && (
         <>
           {abrigos.length === 0 ? (
             <p className={Styles.emptyText}>Nenhum abrigo cadastrado ainda.</p>
@@ -148,13 +151,23 @@ export default function Abrigo() {
                 isActive={abrigoAbertoId === (abrigo._id || abrigo.id)}
                 onShow={() => {
                   const idAtual = abrigo._id || abrigo.id;
-                  setAbrigoAbertoId(abrigoAbertoId === idAtual ? null : idAtual);
+                  setAbrigoAbertoId(
+                    abrigoAbertoId === idAtual ? null : idAtual,
+                  );
                 }}
               />
             ))
           )}
         </>
       )}
+
+      <div className={Styles.Info}>
+        <img src={Info} alt="ícone de Informação" />
+        <p>
+          As informações são atualizadas em tempo real. Em caso de dúvidas,
+          entre em contato com a Defesa Civil pelo 199.
+        </p>
+      </div>
     </section>
   );
 }
