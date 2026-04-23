@@ -3,7 +3,7 @@ import AbrigoItem from "./AbrigoItem";
 import AbrigoForm from "./AbrigoForm";
 import PessoaDesalojadaForm from "./PessoaDesalojadaForm"; // <-- Novo Form
 import Styles from "./Abrigo.module.scss";
-import IconeCasa from "../../assets/House.svg";
+import IconeCasa from "../../assets/house.svg";
 
 export default function Abrigo() {
   const [abrigos, setAbrigos] = useState([]);
