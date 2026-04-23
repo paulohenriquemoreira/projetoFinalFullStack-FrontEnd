@@ -2,6 +2,28 @@ import React, { useState, useEffect } from "react";
 import Styles from "./PessoaDesaparecida.module.scss";
 
 export default function PessoaForm() {
+  // useEffect adicionado para travar a altura da tela no mobile
+  useEffect(() => {
+    const setFixedViewport = () => {
+      // Pega a altura interna da janela e divide por 100 para achar 1%
+      let vh = window.innerHeight * 0.01;
+      // Define o valor na raiz do documento (variável --vh)
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    };
+
+    // Executa a primeira vez
+    setFixedViewport();
+
+    // Atualiza o valor apenas se o usuário girar a tela do aparelho
+    window.addEventListener("resize", () => {
+      // Um pequeno atraso para o navegador terminar de girar a tela
+      setTimeout(setFixedViewport, 100);
+    });
+
+    return () => window.removeEventListener("resize", setFixedViewport);
+  }, []);
+
+
   const [form, setForm] = useState({
     nome_completo: "",
     data_nascimento: "",

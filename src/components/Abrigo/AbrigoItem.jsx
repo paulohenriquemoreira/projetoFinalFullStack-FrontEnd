@@ -6,7 +6,7 @@ export default function AbrigoItem({ abrigo, isActive, onShow }) {
   const isEsgotado = abrigo.vagas_disponiveis <= 0;
 
   return (
-    <div className={Styles.accordionItem}>
+    <section className={Styles.accordionItem}>
       {/* CABEÇALHO */}
       <div
         onClick={onShow}
@@ -61,6 +61,6 @@ export default function AbrigoItem({ abrigo, isActive, onShow }) {
           </div>
         </section>
       )}
-    </div>
+    </section>
   );
 }

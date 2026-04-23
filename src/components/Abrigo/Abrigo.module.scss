@@ -5,43 +5,48 @@
    ========================================================================= */
 
 .container {
-  min-height: 60dvh;
+  /* 1. Fallback padrão */
+  min-height: 100vh; 
+  /* 2. Regra para o iPhone/Safari */
+  min-height: -webkit-fill-available; 
+  /* 3. A variável do seu Javascript para travar a tela */
+  min-height: calc(var(--vh, 1vh) * 100); 
+  
   margin: 0 auto;
   padding: 40px 20px; 
+  /* Proteção para a barra preta do iOS na parte inferior */
+  padding-bottom: calc(40px + env(safe-area-inset-bottom));
+  
   display: flex;
   flex-direction: column;
-
 }
 
 /* Contêiner para alinhar Título e Botão na mesma linha */
-
 .headerContainer {
-  height: 15vh;
+  /* Removido o height: 15vh. Deixamos o conteúdo ditar a altura */
+  min-height: 5rem; 
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 1.2rem;
   
-  
-
   .title {
     margin-bottom: 0; 
     color: $cor-fundo-ativo;
     font-size: 1rem;
     font-family: $fontePrincipal; 
-    
-  
   }
 }
 
 /* Estilo do Botão de Adicionar */
 .ContainerButton {
   width: 30vw;
-  height: 14vh;
+  /* Removido o height: 14vh */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 0.8rem; /* Substitui o space-between para manter a distância fixa entre botões */
 }
 
 .buttonAdd {
@@ -54,6 +59,7 @@
   cursor: pointer;
   transition: background-color 0.3s;
   font-family: $fontePrincipal;
+  width: 100%; /* Garante que os botões tenham o mesmo tamanho */
 
   &:hover {
     opacity: 0.9;
@@ -62,7 +68,6 @@
 }
 
 .buttonAddPessoas {
-
   background-color: $ColorBranco;
   color: $ColorVermelho;
   border: 1px solid $ColorVermelho;
@@ -82,7 +87,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 50vh; 
+  /* Removido o height: 50vh */
+  flex: 1; /* Ocupa o espaço restante da tela de forma inteligente */
+  min-height: 300px; /* Garante que não fique espremido */
   gap: 15px; 
 }
 
@@ -135,7 +142,6 @@
   margin-bottom: 15px;
   border-radius: 0.5rem;
   overflow: hidden; 
-  
 }
 
 .accordionHeader {
@@ -148,7 +154,6 @@
   align-items: center;
   transition: background-color 0.3s ease;
   
-
   &.active {
     background-color: $cor-fundo-ativo;
   }
@@ -338,7 +343,6 @@
       &:hover{
         background-color: $VermelhoHover;
       }
-
   }
 }
 
@@ -354,12 +358,12 @@
 
 .btnBuscarContainer {
   flex: 0.5;
-  justify-content: flex-end; // Empurra o botão de busca para baixo para alinhar com os inputs
+  justify-content: flex-end; 
 }
 
 .btnBuscar {
   padding: 10px;
-  height: 42px; // Altura para combinar com os inputs
+  height: 42px; 
   background-color: $ColorCinza;
   color: $ColorBranco;
   border-radius: 6px;
@@ -399,51 +403,46 @@
   font-family: $fontePrincipal;
 }
 
+
 // Responsividade Tablet
 
 @media(min-width:501px) and (max-width: 900px){
 
-
       .container {
-        min-height: 50dvh;
+        /* Acompanha a proteção do mobile */
+        min-height: calc(var(--vh, 1vh) * 100); 
         margin: 0 auto;
         padding: 40px 20px; 
         display: flex;
         flex-direction: column;
         align-items: center;
-
       }
 
-      /* Contêiner para alinhar Título e Botão na mesma linha */
-
       .headerContainer {
-        height: 8vh;
+        /* Removido height: 8vh */
+        min-height: 4rem; 
         width: 85vw;
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 20px;
         
-        
-
         .title {
           margin-bottom: 0; 
           color: $cor-fundo-ativo;
           font-size: 1.5rem;
           font-family: $fontePrincipal; 
-          
-        
         }
       }
 
-      /* Estilo do Botão de Adicionar */
       .ContainerButton {
         width: 30vw;
-        height: 6vh;
+        /* Removido height: 6vh */
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
+        gap: 0.8rem;
       }
 
       .buttonAdd {
@@ -456,6 +455,7 @@
         cursor: pointer;
         transition: background-color 0.3s;
         font-family: $fontePrincipal;
+        width: 100%;
 
         &:hover {
           opacity: 0.9;
@@ -464,7 +464,6 @@
       }
 
       .buttonAddPessoas {
-
         background-color: $ColorBranco;
         color: $ColorVermelho;
         border: 1px solid $ColorVermelho;
@@ -475,16 +474,14 @@
         }
       }
 
-      /* =========================================
-        Estados (Carregando, Erro e Vazio)
-        ========================================= */
-
       .loadingContainer {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 50vh; 
+        /* Removido height: 50vh */
+        flex: 1;
+        min-height: 300px;
         gap: 15px; 
       }
 
@@ -492,12 +489,6 @@
         width: 60px; 
         height: auto;
         animation: pulsarCasa 1.5s infinite ease-in-out;
-      }
-
-      @keyframes pulsarCasa {
-        0% { transform: scale(0.9); opacity: 0.7; }
-        50% { transform: scale(1.1); opacity: 1; }
-        100% { transform: scale(0.9); opacity: 0.7; }
       }
 
       .loadingText {
@@ -527,14 +518,9 @@
         border: 1px dashed $emptyTextBorder;
       }
 
-      /* =========================================
-        Estilos do Item do Acordeão (AbrigoItem.jsx)
-        ========================================= */
-
       .accordionItem {
-        width: 80vw; 
+        width: 80vw;
         border: 1.5px solid $cor-borda;
-        
       }
 
       .accordionHeader {
@@ -544,7 +530,6 @@
         justify-content: space-between;
         align-items: center;
         transition: background-color 0.3s ease;
-        
 
         &.active {
           background-color: $cor-fundo-ativo;
@@ -590,219 +575,168 @@
           border-bottom: none; 
         }
 
-        .label {
-          font-size: 1rem;
+        .label { font-size: 1rem; }
+        .value { font-size: 1rem; }
+      }
+
+      .badgeGreen { font-size: 1rem; }
+      .badgeEsgotado { font-size: 1rem; }
+
+      .formContainer {
+        width: 40rem;
+        background-color: $ColorBranco;
+        border: 1px solid $cor-borda;
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .formTitle {
+        color: $cor-fundo-ativo;
+        font-family: $fontePrincipal;
+        margin-bottom: 2rem;
+        font-size: 1.5rem;
+      }
+
+      .formulario {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .formGroup {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+
+        label {
+          font-weight: bold;
+          color: $label;
+          font-family: $fontePrincipal;
+          font-size: 0.9rem;
         }
 
-        .value {
+        input, select {
+          padding: 0.5rem 1rem;
+          border: 1px solid $ColorCinza;
+          border-radius: 0.3rem;
+          font-family: $fonteSecundaria;
           font-size: 1rem;
+          color: $ColorCinza;
+          outline: none;
+          transition: border-color 0.3s;
+
+          &:focus { border-color: $cor-fundo-ativo; }
         }
       }
 
-      .badgeGreen {
-        font-size: 1rem;
+      .formRow {
+        display: flex;
+        gap: 5rem;
         
+        @media (max-width: 500px) {
+          flex-direction: column;
+        }
       }
 
-      .badgeEsgotado {
-        font-size: 1rem;
+      .formActions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid $cor-linha-separadora;
+
+        button {
+          padding: 0.8rem 1.5rem;
+          border-radius: 0.5rem;
+          font-weight: bold;
+          font-family: $fontePrincipal;
+          cursor: pointer;
+          border: none;
+          transition: opacity 0.3s;
+
+          &:hover { opacity: 0.8; }
+          &:disabled { opacity: 0.5; cursor: not-allowed; }
+        }
+
+        .btnCancelar {
+          background-color: $ColorBranco;
+          color: $ColorVermelho;
+          border: 1px solid $ColorVermelho;
+
+            &:hover{
+              background-color: $ColorVermelho;
+              color: $ColorBranco;
+            }
+        }
+
+        .btnSalvar {
+          background-color: $cor-fundo-ativo;
+          color: $ColorBranco;
+
+            &:hover{ background-color: $VermelhoHover; }
+        }
       }
 
-      /* =========================================
-        Estilos dos Formulários (AbrigoForm e PessoaDesalojadaForm)
-        ========================================= */
+      .flex2 { flex: 2; }
+      .flex1 { flex: 1; }
 
-            .formContainer {
-              width: 40rem;
-              background-color: $ColorBranco;
-              border: 1px solid $cor-borda;
-              border-radius: 0.5rem;
-              padding: 1.5rem;
-              margin-bottom: 1rem;
-            }
+      .btnBuscarContainer {
+        flex: 0.5;
+        justify-content: flex-end; 
+      }
 
-            .formTitle {
-              color: $cor-fundo-ativo;
-              font-family: $fontePrincipal;
-              margin-bottom: 2rem;
-              font-size: 1.5rem;
-            }
+      .btnBuscar {
+        padding: 10px;
+        height: 42px; 
 
-            .formulario {
-              display: flex;
-              flex-direction: column;
-              gap: 2rem;
-            }
+        &:hover { opacity: 0.8; }
+        &:disabled { opacity: 0.5; cursor: not-allowed; }
+      }
 
-            .formGroup {
-              display: flex;
-              flex-direction: column;
-              gap: 0.5rem;
-              width: 100%;
+      .alertWarningBox {
+        background-color: $errorTextBackground;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        border: 1px solid $errorTextBorder;
 
-              label {
-                font-weight: bold;
-                color: $label;
-                font-family: $fontePrincipal;
-                font-size: 0.9rem;
-              }
+        p {
+          margin: 5px 0;
+          color:$ColorCinza;
+          font-family: $fonteSecundaria;
+        }
+      }
 
-              input, select {
-                padding: 0.5rem 1rem;
-                border: 1px solid $ColorCinza;
-                border-radius: 0.3rem;
-                font-family: $fonteSecundaria;
-                font-size: 1rem;
-                color: $ColorCinza;
-                outline: none;
-                transition: border-color 0.3s;
-
-                &:focus {
-                  border-color: $cor-fundo-ativo;
-                }
-              }
-            }
-
-            .formRow {
-              display: flex;
-              gap: 5rem;
-              
-              @media (max-width: 500px) {
-                flex-direction: column;
-              }
-            }
-
-            .formActions {
-              display: flex;
-              justify-content: flex-end;
-              gap: 1rem;
-              margin-top: 1rem;
-              padding-top: 1rem;
-              border-top: 1px solid $cor-linha-separadora;
-
-              button {
-                padding: 0.8rem 1.5rem;
-                border-radius: 0.5rem;
-                font-weight: bold;
-                font-family: $fontePrincipal;
-                cursor: pointer;
-                border: none;
-                transition: opacity 0.3s;
-
-                &:hover {
-                  opacity: 0.8;
-                }
-
-                &:disabled {
-                  opacity: 0.5;
-                  cursor: not-allowed;
-                }
-              }
-
-              .btnCancelar {
-                background-color: $ColorBranco;
-                color: $ColorVermelho;
-                border: 1px solid $ColorVermelho;
-
-                  &:hover{
-                    background-color: $ColorVermelho;
-                    color: $ColorBranco;
-                  }
-              }
-
-              .btnSalvar {
-                background-color: $cor-fundo-ativo;
-                color: $ColorBranco;
-
-                  &:hover{
-                    background-color: $VermelhoHover;
-                  }
-
-              }
-            }
-
-            /* --- CLASSES PARA PESSOA DESALOJADA FORM --- */
-
-            .flex2 {
-              flex: 2;
-            }
-
-            .flex1 {
-              flex: 1;
-            }
-
-            .btnBuscarContainer {
-              flex: 0.5;
-              justify-content: flex-end; // Empurra o botão de busca para baixo para alinhar com os inputs
-            }
-
-            .btnBuscar {
-              padding: 10px;
-              height: 42px; // Altura para combinar com os inputs
-
-              &:hover {
-                opacity: 0.8;
-              }
-
-              &:disabled {
-                opacity: 0.5;
-                cursor: not-allowed;
-              }
-            }
-
-            .alertWarningBox {
-              background-color: $errorTextBackground;
-              padding: 15px;
-              border-radius: 8px;
-              margin-bottom: 20px;
-              border: 1px solid $errorTextBorder;
-
-              p {
-                margin: 5px 0;
-                color:$ColorCinza;
-                font-family: $fonteSecundaria;
-              }
-            }
-
-            .alertWarningTitle {
-              color: $errorTextColor;
-              margin: 0 0 10px 0;
-              font-family: $fontePrincipal;
-            }
-
+      .alertWarningTitle {
+        color: $errorTextColor;
+        margin: 0 0 10px 0;
+        font-family: $fontePrincipal;
+      }
 }
-
 
 // Responsividade Laptop/Notebook - (min-width:901px) and (max-width: 1728px)
 
 @media(min-width:901px) and (max-width: 1728px){
-    
-        //Estilos Gerais da Página de Abrigos (Abrigo.jsx)
-        
-
+      
       .container {
         max-width: 56rem;
-        min-height: 70dvh;
+        min-height: calc(var(--vh, 1vh) * 100); 
       }
 
-      //Contêiner para alinhar Título e Botão na mesma linha
       .headerContainer {
         margin-bottom: 1.3rem;
 
-        .title {
-          font-size: 1.9rem;
-        }
+        .title { font-size: 1.9rem; }
       }
 
-      //Estilo do Botão de Adicionar
-      .ContainerButton {
-        width: 25vw;
-      }
+      .ContainerButton { width: 25vw; }
 
       .buttonAdd {
         padding: 0.7rem 1rem;
         border-radius: 0.5rem;
-
       }
 
       .buttonAddPessoas {
@@ -810,26 +744,13 @@
         color: $ColorVermelho;
         border: 1px solid $ColorVermelho;
       }
-
       
-        //Estados (Carregando, Erro e Vazio)
-        
-
-      .loadingContainer {
-   
-        gap: 1rem; 
-      }
+      .loadingContainer { gap: 1rem; }
 
       .loadingIcon {
         width: 60px; 
         height: auto;
         animation: pulsarCasa 1.5s infinite ease-in-out;
-      }
-
-      @keyframes pulsarCasa {
-        0% { transform: scale(0.9); opacity: 0.7; }
-        50% { transform: scale(1.1); opacity: 1; }
-        100% { transform: scale(0.9); opacity: 0.7; }
       }
 
       .loadingText {
@@ -850,10 +771,7 @@
         text-align: center;
         padding: 1.3rem;
       }
-
-     
-        //Estilos do Item do Acordeão (AbrigoItem.jsx)
-        
+      
       .accordionItem {
         width: 100%; 
         border: 1px solid $cor-borda; 
@@ -865,73 +783,44 @@
       .accordionHeader {
         padding: 1rem 1.3rem;
 
-        &.active {
-          background-color: $cor-fundo-ativo;
-        }
+        &.active { background-color: $cor-fundo-ativo; }
 
         .headerTitle {
           display: flex;
           align-items: center;
           gap: 1rem;
 
-          h3 {
-            margin: 0;
-            font-size: 1.2rem;
-          }
-
-          .subtitle {
-            font-size: 0.9rem;
-            opacity: 0.8;
-          }
+          h3 { margin: 0; font-size: 1.2rem; }
+          .subtitle { font-size: 0.9rem; opacity: 0.8; }
         }
 
-        .icon {
-          font-weight: bold;
-          font-size: 1.2rem;
-        }
+        .icon { font-weight: bold; font-size: 1.2rem; }
       }
 
-      .accordionBody {
-        padding: 0 1.3rem;
-      }
+      .accordionBody { padding: 0 1.3rem; }
 
       .detailRow {
         display: grid;
         grid-template-columns: 12.5rem 1fr; 
         padding: 1rem 0;
 
-        &:last-child {
-          border-bottom: none; 
-        }
-
-        .label {
-          font-weight: bold;
-          font-size: 1rem;
-        }
-
-        .value {
-          font-size: 1rem;
-        }
+        &:last-child { border-bottom: none; }
+        .label { font-weight: bold; font-size: 1rem; }
+        .value { font-size: 1rem; }
       }
 
       .badgeGreen {
         padding: 0.3rem 0.5rem;
         border-radius: 1rem;
         font-size: 0.85rem;
-
       }
 
       .badgeEsgotado {
         padding: 0.5rem 1rem;
         border-radius: 16px;
         font-size: 0.85rem;
-     
       }
-
-     
-        //Estilos dos Formulários (AbrigoForm e PessoaDesalojadaForm)
-        
-
+      
       .formContainer {
         padding: 1.9rem;
         margin-bottom: 1.3rem;
@@ -942,9 +831,7 @@
         font-size: 1.5rem;
       }
 
-      .formulario {
-        gap: 1rem;
-      }
+      .formulario { gap: 1rem; }
 
       .formGroup {
         display: flex;
@@ -963,9 +850,7 @@
           padding: 0.8rem 1rem;
           font-size: 1rem;
 
-          &:focus {
-            border-color: $cor-fundo-ativo;
-          }
+          &:focus { border-color: $cor-fundo-ativo; }
         }
       }
 
@@ -973,9 +858,7 @@
         display: flex;
         gap: 1rem;
         
-        @media (max-width: 600px) {
-          flex-direction: column;
-        }
+        @media (max-width: 600px) { flex-direction: column; }
       }
 
       .formActions {
@@ -987,14 +870,8 @@
           padding: 0.6rem 1.1rem;
           border-radius: 0.3rem;
 
-          &:hover {
-            opacity: 0.8;
-          }
-
-          &:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-          }
+          &:hover { opacity: 0.8; }
+          &:disabled { opacity: 0.5; cursor: not-allowed; }
         }
 
         .btnCancelar {
@@ -1009,24 +886,17 @@
         }
       }
 
-      // --- CLASSES PARA PESSOA DESALOJADA FORM --- 
-
-      .flex2 {
-        flex: 2;
-      }
-
-      .flex1 {
-        flex: 1;
-      }
+      .flex2 { flex: 2; }
+      .flex1 { flex: 1; }
 
       .btnBuscarContainer {
         flex: 0.5;
-        justify-content: flex-end; // Empurra o botão de busca para baixo para alinhar com os inputs
+        justify-content: flex-end; 
       }
 
       .btnBuscar {
         padding: 0.8;
-        height: 2.87rem; // Altura para combinar com os inputs
+        height: 2.87rem; 
         border-radius: 0.5rem;
         cursor: pointer;
         border: none;
@@ -1034,14 +904,8 @@
         font-family: $fontePrincipal;
         transition: opacity 0.3s;
 
-        &:hover {
-          opacity: 0.8;
-        }
-
-        &:disabled {
-          opacity: 0.5;
-          cursor: not-allowed;
-        }
+        &:hover { opacity: 0.8; }
+        &:disabled { opacity: 0.5; cursor: not-allowed; }
       }
 
       .alertWarningBox {
@@ -1063,7 +927,4 @@
         margin: 0 0 0.5rem 0;
         font-family: $fontePrincipal;
       }
-    
-
 }
-

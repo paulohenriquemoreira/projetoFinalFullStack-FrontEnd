@@ -1,11 +1,21 @@
-@use'../../styles/variaveis.scss' as *;
+@use '../../styles/variaveis.scss' as *;
 
 /* =========================================================================
    Mobile First - Estilos Gerais da Página de PessoaDesaparecida.jsx
    ========================================================================= */
 
-.SecaoPessoas{
-  height: 100dvh;
+.SecaoPessoas {
+  /* 1. Fallback padrão */
+  min-height: 100vh; 
+  /* 2. Regra para o iPhone/Safari */
+  min-height: -webkit-fill-available; 
+  /* 3. A variável do seu Javascript para travar a tela */
+  min-height: calc(var(--vh, 1vh) * 100); 
+
+  /* Proteção para a barra preta do iOS */
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-top: 1rem; /* Adicionado um respiro no topo */
+
   display: flex;
   align-items: center;
   background-image:
@@ -20,9 +30,6 @@
     &:hover {
     opacity: 1; 
   }
-  
-
-  
 }
 
 .forms {
@@ -132,7 +139,8 @@
   border: none;
   border-radius: 0.3rem;
   padding: 0 1rem;
-  height: 5vh; /* Altura para alinhar com o input */
+  /* Altura trocada de 5vh para rem, assim acompanha a altura do input de forma fixa */
+  height: 2.6rem; 
   cursor: pointer;
   font-weight: bold;
   font-family: $fontePrincipal;
@@ -171,11 +179,13 @@
   font-size: 1.2rem;
 }
 
+
 //Responsividade Tablet
 
 @media(min-width:501px) and (max-width: 900px){
     .SecaoPessoas{
-      height: 80dvh;
+      /* Acompanha a proteção do mobile (removido height: 80dvh) */
+      min-height: calc(var(--vh, 1vh) * 100); 
     }
 
     .forms {
@@ -267,8 +277,9 @@
 
     .btnBuscar {
       padding: 0 1rem;
-      height: 2.8vh; //Altura para alinhar com o input
-      margin-top: 1.4rem; // Para alinhar a base e topo com inputs
+      /* Removido o 2.8vh */
+      height: 2.6rem; 
+      margin-top: 1.4rem; 
 
       &:hover {
         opacity: 0.8;
@@ -294,7 +305,6 @@
       margin: 0 0 0.8rem 0;
       font-size: 1.2rem;
     }
-
 }
 
 
@@ -302,7 +312,8 @@
 
 @media(min-width:901px) and (max-width: 1728px){
       .SecaoPessoas{
-        height: 110vh;
+        /* Travado em 100vh para Desktop ao invés de 110vh que gerava barra de rolagem indesejada */
+        min-height: 100vh; 
         display: flex;
         align-items: center;
         background-image:
@@ -317,9 +328,6 @@
           &:hover {
           opacity: 1; 
         }
-        
-
-        
       }
 
       .forms {
@@ -428,12 +436,13 @@
         border: none;
         border-radius: 5px;
         padding: 0 15px;
-        height: 35px; //Altura para alinhar com o input
+        /* Desktop mantido com pixels para estabilidade */
+        height: 35px; 
         cursor: pointer;
         font-weight: bold;
         font-family: $fontePrincipal;
         transition: opacity 0.3s;
-        margin-bottom: 15px; // Para alinhar a base
+        margin-bottom: 15px; 
 
         &:hover {
           opacity: 0.8;
@@ -466,5 +475,4 @@
         font-family: $fontePrincipal;
         font-size: 1.2rem;
       }
-
 }
