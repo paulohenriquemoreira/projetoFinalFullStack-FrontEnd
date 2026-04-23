@@ -1,13 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import House from "../../assets/house.svg";
 import Pessoas from "../../assets/pessoas.svg";
-import Gota from "../../assets/gotaAgua.svg"
-import Abrigos from "../Abrigo/Abrigo"
-import PessoasDesaparecidas from "../PessoaDesaparecida/PessoaDesaparecida"
+import Gota from "../../assets/gotaAgua.svg";
+import Abrigos from "../Abrigo/Abrigo";
+import PessoasDesaparecidas from "../PessoaDesaparecida/PessoaDesaparecida";
 import Styles from "./Home.module.scss";
 
 export default function Home() {
+  // useEffect adicionado para travar a altura da tela no mobile
+  useEffect(() => {
+    const setFixedViewport = () => {
+      // Pega a altura interna da janela e divide por 100 para achar 1%
+      let vh = window.innerHeight * 0.01;
+      // Define o valor na raiz do documento (variável --vh)
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    };
+
+    // Executa a primeira vez
+    setFixedViewport();
+
+    // Atualiza o valor apenas se o usuário girar a tela do aparelho
+    window.addEventListener("resize", () => {
+      // Um pequeno atraso para o navegador terminar de girar a tela
+      setTimeout(setFixedViewport, 100);
+    });
+
+    return () => window.removeEventListener("resize", setFixedViewport);
+  }, []);
+
   return (
     <section className={Styles.SecaoHome}>
       <div className={Styles.SecaoTituloHome}>
@@ -59,8 +80,10 @@ export default function Home() {
         </Link>
       </section>
       <section className={Styles.SecaoAviso}>
-        <img  className={Styles.SecaoAvisoImg} src={Gota} alt="Ícone de Gota de Água" />
-        <p className={Styles.SecaoAvisoTexto}>Em caso de enchentes, ligue 193 (Bombeiros) ou 199 (Defesa Civil)</p>
+        <img className={Styles.SecaoAvisoImg} src={Gota} alt="Ícone de Gota de Água" />
+        <p className={Styles.SecaoAvisoTexto}>
+          Em caso de enchentes, ligue 193 (Bombeiros) ou 199 (Defesa Civil)
+        </p>
       </section>
     </section>
   );

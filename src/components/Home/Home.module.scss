@@ -1,118 +1,111 @@
 @use'../../styles/variaveis.scss' as*;
 
-
 /* =========================================================================
    Mobile First - Estilos Gerais da Página de Home.jsx
    ========================================================================= */
 
-
-.SecaoHome{
+.SecaoHome {
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: 100dvh;
+    /* Usa a variável --vh calculada pelo React. Se falhar, faz fallback para 100vh */
+    min-height: calc(var(--vh, 1vh) * 100); 
     padding: 1rem 0;
-    
 }
 
-
-.SecaoTituloHome{
+.SecaoTituloHome {
     width: 96vw;
-    height: 28vh;
     text-align: center;    
     padding: 1rem;
+    margin-bottom: 1rem; 
 
-
-    .TituloHome{
+    .TituloHome {
         font-family: $fontePrincipal;
         font-size: 1.75rem;
         color: $ColorVermelho;
         margin-bottom: 1rem;
     }
 
-    .SubtituloHome{
+    .SubtituloHome {
         font-family: $fonteSecundaria;
         font-size: 0.75rem;
         color: $ColorCinza;
     }
 }
 
-.CardsButtons{
+.CardsButtons {
     width: 85vw;
-    height: 55vh;
+    flex: 1; 
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: space-around;
-    
-
+    justify-content: center;
+    gap: 1.5rem; 
 }
 
-.LinkCard{
+.LinkCard {
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: space-evenly;
     text-align: center;
     width: 60vw;
-    height: 25vh;
+    min-height: 180px; 
+    flex-shrink: 0; 
     background-color: $ColorVerde;
     border-radius: 10px;
     padding: 1rem;
 
-    &:hover{
+    &:hover {
        background-color: $VerdeHover;
     }
-    
 }
 
-.LinkCardPessoas{
+.LinkCardPessoas {
     background-color: $ColorVermelho;
-        &:hover{
-            background-color: $VermelhoHover;
-        }
+    &:hover {
+        background-color: $VermelhoHover;
+    }
 }
 
-
-.Card{
-    
+.Card {
     color: $ColorBranco;
 
-    .CardImg{
-        height: 8vh;
+    .CardImg {
+        height: 3.5rem; 
+        margin-bottom: 0.5rem; 
     }
 
-    .CardTitulo{
+    .CardTitulo {
         font-family: $fontePrincipal;
         font-size: 1.2rem;
         margin-bottom: 0.5rem;
     }
 
-    .CardTexto{
+    .CardTexto {
         font-family: $fonteSecundaria;
         font-size: 0.8rem;
-
     }
 }
 
-.SecaoAviso{
+.SecaoAviso {
     width: 80vw;
     display: flex;
     align-items: center;
+    justify-content: center;
     margin: 1rem 0;
     padding: 1rem 0;
 
-    .SecaoAvisoImg{
-        height: 2vh;
+    .SecaoAvisoImg {
+        height: 1.5rem; 
         margin-right: 0.5rem;
     }
 
-    .SecaoAvisoTexto{
+    .SecaoAvisoTexto {
         font-family: $fonteSecundaria;
         font-size: 0.8rem;
         color: $ColorCinza;
     }
-
 }
 
 
@@ -123,7 +116,7 @@
             display: flex;
             align-items: center;
             flex-direction: column;
-            height: 80dvh;
+            min-height: 80vh; /* Ajustado de height para min-height aqui também por segurança */
             padding: 1rem 0;
             
         }
@@ -216,7 +209,7 @@
             display: flex;
             align-items: center;
             flex-direction: column;
-            height: 95dvh;
+            min-height: 95vh; /* Ajustado de height para min-height por segurança */
             
         }
 
