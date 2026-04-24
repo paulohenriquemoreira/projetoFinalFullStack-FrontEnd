@@ -1,10 +1,16 @@
 import React from "react";
 import Styles from "./Abrigo.module.scss";
 
-
-export default function AbrigoItem({ abrigo, isActive, onShow }) {
-  // Variável para verificar se o abrigo está sem vagas
+export default function AbrigoItem({ abrigo, isActive, onShow, onDelete }) {
   const isEsgotado = abrigo.vagas_disponiveis <= 0;
+
+  const handleDeleteClick = (e) => {
+    e.stopPropagation(); // Impede de abrir/fechar o acordeão ao clicar na lixeira
+    const confirmar = window.confirm(`Tem certeza que deseja excluir o abrigo "${abrigo.nome_abrigo}"?`);
+    if (confirmar && onDelete) {
+      onDelete(abrigo.id || abrigo._id);
+    }
+  };
 
   return (
     <section className={Styles.accordionItem}>
@@ -17,14 +23,23 @@ export default function AbrigoItem({ abrigo, isActive, onShow }) {
           <div className={Styles.Circulo}></div>
           <div>
             <h3>{abrigo.nome_abrigo || "NOME DO ABRIGO"}</h3>
-            
-            {/* Se estiver esgotado, mostra Lotação Máxima. Se não, mostra as vagas. */}
             <span className={Styles.subtitle}>
               {isEsgotado ? "Lotação Máxima" : `${abrigo.vagas_disponiveis} vagas disponíveis`}
             </span>
           </div>
         </div>
-        <span className={Styles.icon}>{isActive ? "ᐱ" : "ᐯ"}</span>
+
+        {/* Agrupamento da lixeira e da setinha via SCSS */}
+        <div className={Styles.headerActions}>
+          <button 
+            onClick={handleDeleteClick} 
+            title="Excluir Abrigo"
+            className={Styles.btnDelete}
+          >
+            🗑️
+          </button>
+          <span className={Styles.icon}>{isActive ? "ᐱ" : "ᐯ"}</span>
+        </div>
       </div>
 
       {/* DETALHES */}
@@ -45,24 +60,18 @@ export default function AbrigoItem({ abrigo, isActive, onShow }) {
             <span className={Styles.value}>{abrigo.capacidade_total}</span>
           </div>
           
-          {/* MÁGICA DA BADGE DINÂMICA AQUI */}
           <div className={Styles.detailRow}>
             <span className={Styles.label}>Vagas Disponíveis</span>
             <div>
               {isEsgotado ? (
-                <span className={Styles.badgeEsgotado}>
-                  ESGOTADO
-                </span>
+                <span className={Styles.badgeEsgotado}>ESGOTADO</span>
               ) : (
-                <span className={Styles.badgeGreen}>
-                  {abrigo.vagas_disponiveis} vagas
-                </span>
+                <span className={Styles.badgeGreen}>{abrigo.vagas_disponiveis} vagas</span>
               )}
             </div>
           </div>
         </section>
       )}
-
     </section>
   );
 }

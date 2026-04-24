@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AbrigoItem from "./AbrigoItem";
 import AbrigoForm from "./AbrigoForm";
-import PessoaDesalojadaForm from "./PessoaDesalojadaForm"; // <-- Novo Form
+import PessoaDesalojadaForm from "./PessoaDesalojadaForm";
 import Styles from "./Abrigo.module.scss";
 import IconeCasa from "../../assets/house.svg";
 import Info from "../../assets/info.svg";
@@ -34,7 +34,7 @@ export default function Abrigo() {
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState(null);
 
-  // MUDANÇA AQUI: Controla qual tela renderizar ('lista', 'formAbrigo' ou 'formPessoa')
+  // Controla qual tela renderizar ('lista', 'formAbrigo' ou 'formPessoa')
   const [telaAtual, setTelaAtual] = useState("lista");
 
   const buscarAbrigos = async () => {
@@ -59,6 +59,26 @@ export default function Abrigo() {
   useEffect(() => {
     buscarAbrigos();
   }, []);
+
+  //  Função para deletar o abrigo chamando a API
+  const deletarAbrigo = async (idAbrigo) => {
+    try {
+      const resposta = await fetch(`https://projetofinalfullstack-backend-api.onrender.com/abrigos/${idAbrigo}`, {
+        method: "DELETE"
+      });
+
+      if (resposta.ok) {
+        alert("Abrigo excluído com sucesso!");
+        // Remove da lista em tela comparando o id para evitar recarregamento extra
+        setAbrigos(prev => prev.filter(abrigo => (abrigo._id || abrigo.id) !== idAbrigo));
+      } else {
+        alert("Erro ao excluir abrigo.");
+      }
+    } catch (erro) {
+      console.error("Erro ao deletar:", erro);
+      alert("Erro de conexão com o servidor.");
+    }
+  };
 
   if (carregando) {
     return (
@@ -107,7 +127,7 @@ export default function Abrigo() {
                 + Adicionar Abrigo
               </button>
               <button
-                // Adicionei uma margem à esquerda para desgrudar os botões
+                
                 className={`${Styles.buttonAdd} ${Styles.buttonAddPessoas}`}
                 onClick={() => setTelaAtual("formPessoa")}
               >
@@ -155,19 +175,22 @@ export default function Abrigo() {
                     abrigoAbertoId === idAtual ? null : idAtual,
                   );
                 }}
+                onDelete={deletarAbrigo} // <- Prop passada para o componente filho
               />
             ))
           )}
         </>
       )}
 
-      <div className={Styles.Info}>
-        <img src={Info} alt="ícone de Informação" />
-        <p>
-          As informações são atualizadas em tempo real. Em caso de dúvidas,
-          entre em contato com a Defesa Civil pelo 199.
-        </p>
-      </div>
+      {telaAtual === "lista" && (
+        <div className={Styles.Info}>
+          <img src={Info} alt="ícone de Informação" />
+          <p>
+            As informações são atualizadas em tempo real. Em caso de dúvidas,
+            entre em contato com a Defesa Civil pelo 199.
+          </p>
+        </div>
+      )}
     </section>
   );
 }

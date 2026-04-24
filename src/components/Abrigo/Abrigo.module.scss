@@ -5,25 +5,19 @@
    ========================================================================= */
 
 .container {
-  /* 1. Fallback padrão */
   min-height: 100vh; 
-  /* 2. Regra para o iPhone/Safari */
   min-height: -webkit-fill-available; 
-  /* 3. A variável do seu Javascript para travar a tela */
   min-height: calc(var(--vh, 1vh) * 100); 
   
   margin: 0 auto;
   padding: 40px 20px; 
-  /* Proteção para a barra preta do iOS na parte inferior */
   padding-bottom: calc(40px + env(safe-area-inset-bottom));
   
   display: flex;
   flex-direction: column;
 }
 
-/* Contêiner para alinhar Título e Botão na mesma linha */
 .headerContainer {
-  /* Removido o height: 15vh. Deixamos o conteúdo ditar a altura */
   min-height: 5rem; 
   display: flex;
   justify-content: space-between;
@@ -38,15 +32,13 @@
   }
 }
 
-/* Estilo do Botão de Adicionar */
 .ContainerButton {
   width: 30vw;
-  /* Removido o height: 14vh */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.8rem; /* Substitui o space-between para manter a distância fixa entre botões */
+  gap: 0.8rem; 
 }
 
 .buttonAdd {
@@ -59,7 +51,7 @@
   cursor: pointer;
   transition: background-color 0.3s;
   font-family: $fontePrincipal;
-  width: 100%; /* Garante que os botões tenham o mesmo tamanho */
+  width: 100%; 
 
   &:hover {
     opacity: 0.9;
@@ -87,9 +79,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* Removido o height: 50vh */
-  flex: 1; /* Ocupa o espaço restante da tela de forma inteligente */
-  min-height: 300px; /* Garante que não fique espremido */
+  flex: 1; 
+  min-height: 300px; 
   gap: 15px; 
 }
 
@@ -173,6 +164,30 @@
       font-size: 0.9rem;
       opacity: 0.8;      
       font-family: $fonteSecundaria;
+    }
+  }
+
+  /* Classes de Alinhamento da Lixeira */
+  .headerActions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .btnDelete {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+    
+
+    &:hover {
+      transform: scale(1.15);
     }
   }
 
@@ -346,15 +361,8 @@
   }
 }
 
-// --- CLASSES PARA PESSOA DESALOJADA FORM ---
-
-.flex2 {
-  flex: 2;
-}
-
-.flex1 {
-  flex: 1;
-}
+.flex2 { flex: 2; }
+.flex1 { flex: 1; }
 
 .btnBuscarContainer {
   flex: 0.5;
@@ -373,14 +381,8 @@
   font-family: $fontePrincipal;
   transition: opacity 0.3s;
 
-  &:hover {
-    opacity: 0.8;
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
+  &:hover { opacity: 0.8; }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
 }
 
 .alertWarningBox {
@@ -415,13 +417,13 @@
   padding: 1rem 1.5rem;
 }
 
-
+// =========================================
 // Responsividade Tablet
+// =========================================
 
 @media(min-width:501px) and (max-width: 900px){
 
       .container {
-        /* Acompanha a proteção do mobile */
         min-height: calc(var(--vh, 1vh) * 70); 
         margin: 0 auto;
         padding: 40px 20px; 
@@ -431,7 +433,6 @@
       }
 
       .headerContainer {
-        /* Removido height: 8vh */
         min-height: 4rem; 
         width: 85vw;
         display: flex;
@@ -449,7 +450,6 @@
 
       .ContainerButton {
         width: 30vw;
-        /* Removido height: 6vh */
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -491,7 +491,6 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        /* Removido height: 50vh */
         flex: 1;
         min-height: 300px;
         gap: 15px; 
@@ -563,6 +562,10 @@
             opacity: 0.8;      
             font-family: $fonteSecundaria;
           }
+        }
+        
+        .headerActions {
+          gap: 15px;
         }
 
         .icon {
@@ -729,17 +732,17 @@
       }
 
       .Info{
-        width: 80vw;
+        justify-content: space-evenly;
+        width: 63vw;
         margin-top: 2rem;
-        font-size: 1.1rem;
+        font-size: 0.9rem;
         padding: 1rem 1.5rem;
       }
-
-
-
 }
 
-// Responsividade Laptop/Notebook - (min-width:901px) and (max-width: 1728px)
+// =========================================
+// Responsividade Laptop/Notebook
+// =========================================
 
 @media(min-width:901px) and (max-width: 1728px){
       
@@ -814,6 +817,10 @@
 
           h3 { margin: 0; font-size: 1.2rem; }
           .subtitle { font-size: 0.9rem; opacity: 0.8; }
+        }
+
+        .headerActions {
+          gap: 15px;
         }
 
         .icon { font-weight: bold; font-size: 1.2rem; }
@@ -950,7 +957,6 @@
         font-family: $fontePrincipal;
       }
 
-
       .Info{
         justify-content: space-evenly;
         width: 63vw;
@@ -958,5 +964,4 @@
         font-size: 0.9rem;
         padding: 1rem 1.5rem;
       }
-
 }
