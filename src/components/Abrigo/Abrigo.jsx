@@ -63,14 +63,19 @@ export default function Abrigo() {
   //  Função para deletar o abrigo chamando a API
   const deletarAbrigo = async (idAbrigo) => {
     try {
-      const resposta = await fetch(`https://projetofinalfullstack-backend-api.onrender.com/abrigos/${idAbrigo}`, {
-        method: "DELETE"
-      });
+      const resposta = await fetch(
+        `https://projetofinalfullstack-backend-api.onrender.com/abrigos/${idAbrigo}`,
+        {
+          method: "DELETE",
+        },
+      );
 
       if (resposta.ok) {
         alert("Abrigo excluído com sucesso!");
         // Remove da lista em tela comparando o id para evitar recarregamento extra
-        setAbrigos(prev => prev.filter(abrigo => (abrigo._id || abrigo.id) !== idAbrigo));
+        setAbrigos((prev) =>
+          prev.filter((abrigo) => (abrigo._id || abrigo.id) !== idAbrigo),
+        );
       } else {
         alert("Erro ao excluir abrigo.");
       }
@@ -127,7 +132,6 @@ export default function Abrigo() {
                 + Adicionar Abrigo
               </button>
               <button
-                
                 className={`${Styles.buttonAdd} ${Styles.buttonAddPessoas}`}
                 onClick={() => setTelaAtual("formPessoa")}
               >

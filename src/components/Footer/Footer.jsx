@@ -14,6 +14,7 @@ export default function Footer() {
               src={House}
               alt="Imagem da casinha"
             />
+
             <h2 className={Styles.TituloBrand}>Sistema de Gestão de Abrigos</h2>
           </div>
           <div className={Styles.DivTextBrand}>
@@ -30,15 +31,23 @@ export default function Footer() {
             <ul className={Styles.ListaContatos}>
               <li>
                 <h4>Defesa Civil</h4>
-                <p>199</p>
+                <p>
+                  <a href="tel:199">199</a>
+                </p>
               </li>
               <li>
                 <h4>Bombeiros</h4>
-                <p>193</p>
+                <p>
+                  <a href="tel:193">193</a>
+                </p>
               </li>
               <li>
                 <h4>Suporte</h4>
-                <p>abrigos@enchentes.gov.br</p>
+                <p>
+                  <a href="mailto:abrigos@enchentes.gov.br">
+                    abrigos@enchentes.gov.br
+                  </a>
+                </p>
               </li>
             </ul>
           </div>
@@ -47,12 +56,11 @@ export default function Footer() {
 
       <hr className={Styles.Divider} />
       <section className={Styles.SecaoCopy}>
-          <p className={Styles.Copy}>
-            © 2026 Desenvolvido por Paulo Henrique Moreira - Sistema de Gestão de
-            Abrigos para auxiliar em situações de enchentes no Brasil
-          </p>
+        <p className={Styles.Copy}>
+          © 2026 Desenvolvido por Paulo Henrique Moreira - Sistema de Gestão de
+          Abrigos para auxiliar em situações de enchentes no Brasil
+        </p>
       </section>
-
     </footer>
   );
 }
