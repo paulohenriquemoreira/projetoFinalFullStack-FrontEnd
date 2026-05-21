@@ -1,8 +1,10 @@
-# 🚀 Desafio Final - Empower 5.0
+# Projeto do Sistema de Gestão de Abrigos
 
-## Ênfase no Front End e no consumo da construção da API
+## Ênfase no Front End e no consumo da construção da API  -  [Projeto da API - BackEnd](https://github.com/paulohenriquemoreira/projeto_api_sistema_de_gestao_de_abrigos)
 
-### Este projeto foi desenvolvido a partir de um desafio sobre enchentes no Brasil. Ao analisar o cenário, identifiquei a dificuldade relacionada à falta de informação sobre abrigos, o que motivou a criação desta solução. Tendo em vista que a organização dos abrigos agiliza tanto a localização de pessoas desaparecidas quanto o esforço voluntário e as doações, este projeto tem como pilar a organização das informações e a promoção de maior agilidade na gestão de vagas em abrigos
+### Este projeto foi desenvolvido a partir de um desafio sobre enchentes no Brasil. Ao analisar o cenário, identifiquei a dificuldade relacionada à falta de informação sobre abrigos, o que motivou a criação desta solução. Tendo em vista que a organização dos abrigos agiliza tanto a localização de pessoas desaparecidas quanto o esforço voluntário e as doações, este projeto tem como pilar a organização das informações e a promoção de maior agilidade na gestão de vagas em abrigos.
+
+### Este projeto faz parte do 🚀 Desafio Final - da Formação Empower 5.0 Full Stack
 
 ---
  ## Apresentação do Projeto - Tela Home
